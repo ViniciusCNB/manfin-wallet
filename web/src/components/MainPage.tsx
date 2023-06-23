@@ -1,7 +1,7 @@
 import { useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import AddInstitutionModal from "./AddInstitutionModal"
-
+import AddStockModal from "./AddStockModal"
 
 const MainPage = () => {
   const [open1, setOpen1] = useState(false)
@@ -28,11 +28,18 @@ const MainPage = () => {
               <Dialog.Trigger className="hover:bg-gray-400/50 w-full flex justify-start rounded-b-xl p-4 uppercase">
                 Adicionar nova ação
               </Dialog.Trigger>
+
+              <AddStockModal />
             </Dialog.Root>
           </div>
         </div>
         <div className="flex flex-row justify-center p-5 rounded-xl bg-gray-200/50">
-          <p>Ações Cadastradas</p>
+          <div>
+            <p className="uppercase text-xl font-bold">Ações Cadastradas</p>
+          </div>
+          <div>
+            
+          </div>
         </div>
       </div>
     </>
