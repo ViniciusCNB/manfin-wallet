@@ -5,7 +5,7 @@ import "./styles/main.css"
 const App = () => {
   return (
     <>
-      <div className="p-5">
+      <div className="">
         <MenuBar />
         <MainPage />
       </div>
