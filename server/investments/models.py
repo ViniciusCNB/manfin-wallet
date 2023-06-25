@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, OneToOneField, CASCADE, DateField, IntegerField, FloatField
+from django.db.models import Model, CharField, ForeignKey, CASCADE, DateField, IntegerField, FloatField
 
 
 class Instituicao(Model):
@@ -7,7 +7,7 @@ class Instituicao(Model):
 
 class Acao(Model):
     codigo = CharField(max_length=10, primary_key=True)
-    instituicao = OneToOneField(Instituicao, on_delete=CASCADE)
+    instituicao = ForeignKey(Instituicao, on_delete=CASCADE)
     data_atualizacao = DateField()
     quantidade = IntegerField()
     preco = FloatField()
