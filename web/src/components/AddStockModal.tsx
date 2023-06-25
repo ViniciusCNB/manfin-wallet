@@ -8,8 +8,6 @@ const AddStockModal = () => {
   const { register, handleSubmit, reset } = useForm()
 
   const onSubmit = async (data: any) => {
-    // console.log(data)
-
     try {
       await axios
         .post("http://127.0.0.1:8000/acao/", data)
