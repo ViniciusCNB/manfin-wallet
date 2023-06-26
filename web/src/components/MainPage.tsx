@@ -25,7 +25,7 @@ const MainPage = () => {
 
   return (
     <>
-      <div className="bg-gradient-to-l from-[#204662] to-[#102533] h-fit max-h-max w-full py-14 px-5 flex flex-col gap-44">
+      <div className="bg-gradient-to-l from-[#204662] to-[#102533] h-fit max-h-max w-full py-14 px-5 flex flex-col gap-32">
         <div className="grid grid-cols-2 gap-20 items-center text-center">
           <div className="text-white text-[1.5rem]">
             <p>
@@ -37,14 +37,14 @@ const MainPage = () => {
           </div>
           <Operations />
         </div>
-        <div className="grid grid-cols-2 items-center">
+        <div className="grid h-full grid-cols-2 items-center">
           <div className="w-full h-full flex flex-col justify-center">
             <div className="bg-[#01141f] p-5 rounded-t-lg flex justify-center">
               <p className="uppercase text-xl text-white">
                 Aplicações Cadastradas
               </p>
             </div>
-            <div className="bg-gray-200/80 h-80 overflow-auto divide-y-[1px] divide-gray-800 rounded-b-lg">
+            <div className="bg-gray-200/80 h-96 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] divide-y-[1px] divide-gray-800 rounded-b-lg">
               {acoes.map((acao) => {
                 return (
                   <StockCard
