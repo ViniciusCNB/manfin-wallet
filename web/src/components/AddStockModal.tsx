@@ -7,7 +7,7 @@ const AddStockModal = () => {
   const [instituicoes, setInstituicoes] = useState([])
   const { register, handleSubmit, reset } = useForm()
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: unknown) => {
     try {
       await axios
         .post("http://127.0.0.1:8000/acao/", data)
@@ -15,6 +15,7 @@ const AddStockModal = () => {
         .then((data) =>
           alert(`Ação ${data.codigo} adicionada com sucesso.`)
         )
+        .then(() => window.location.reload())
     } catch (error) {
       throw new Error(`Erro no back-end!\n${error}`)
     } finally {

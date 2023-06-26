@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 const AddInstitutionModal = () => {
   const { register, handleSubmit, reset } = useForm()
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: unknown) => {
     try {
       await axios
         .post("http://127.0.0.1:8000/instituicao/", data)
@@ -13,6 +13,7 @@ const AddInstitutionModal = () => {
         .then((data) =>
           alert(`Instituição ${data.nome} adicionada com sucesso.`)
         )
+        .then(() => window.location.reload())
     } catch (error) {
       throw new Error(`Erro no back-end!\n${error}`)
     } finally {
