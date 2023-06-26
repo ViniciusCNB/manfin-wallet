@@ -61,7 +61,12 @@ const MainPage = () => {
             </div>
             <div className="bg-[#01141f] mt-2 py-3 px-4 flex justify-between rounded-lg uppercase text-2xl text-white">
               <p>Total Investido</p>
-              <p>R$ {totalSharesValue().toFixed(2)}</p>
+              <p>
+                R${" "}
+                {totalSharesValue().toLocaleString("pt-BR", {
+                  minimumFractionDigits: 2,
+                })}
+              </p>
             </div>
           </div>
           <div className="flex flex-col justify-center items-center">

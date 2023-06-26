@@ -31,8 +31,10 @@ const StockCard = (props: StockCardProps) => {
         </div>
         <div className="flex justify-center">
           <p>
-            <span className="font-bold text-[#01141f]">Preço</span> <br /> R$
-            {props.preco.toFixed(2)}
+            <span className="font-bold text-[#01141f]">Preço</span> <br /> R${" "}
+            {props.preco.toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+            })}
           </p>
         </div>
         <div className="flex justify-center">
@@ -44,7 +46,10 @@ const StockCard = (props: StockCardProps) => {
         <div className="flex justify-center">
           <p>
             <span className="font-bold text-[#01141f]">Saldo Atual</span> <br />
-            R$ {props.valor_total.toFixed(2)}
+            R${" "}
+            {props.valor_total.toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+            })}
           </p>
         </div>
       </div>
