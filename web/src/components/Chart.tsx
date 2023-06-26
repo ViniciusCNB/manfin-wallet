@@ -24,7 +24,7 @@ const Chart = (props: ChartProps) => {
         cx="50%"
         cy="50%"
         outerRadius={120}
-        fill="#c1d200"
+        fill="#01141f"
         label
       />
       <Tooltip />
