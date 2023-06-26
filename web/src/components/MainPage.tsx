@@ -25,19 +25,21 @@ const MainPage = () => {
 
   return (
     <>
-      <div className="bg-gradient-to-l from-[#204662] to-[#102533] h-fit max-h-max w-full py-14 px-5 flex flex-col gap-32">
-        <div className="grid grid-cols-2 gap-20 items-center text-center">
+      <div className="bg-gradient-to-l from-[#204662] to-[#102533] h-fit max-h-max w-full py-14 px-5 flex flex-col gap-28">
+        <div className="grid grid-cols-2 gap-20 items-center text-right">
           <div className="text-white text-[1.5rem]">
             <p>
-              Realize operações na sua carteira com as opções ao lado.
+              {">"}
+              {">"} Realize operações na sua carteira com as opções ao lado.
               <br />
-              Adicione uma nova instituição financeira para que, dessa forma,
-              seja possível adicionar novas aplicações.
+              {">"}
+              {">"} Adicione uma nova instituição financeira para que, dessa
+              forma, seja possível adicionar novas aplicações.
             </p>
           </div>
           <Operations />
         </div>
-        <div className="grid h-full grid-cols-2 items-center">
+        <div className="grid h-full grid-cols-2 text-left gap-20 items-center">
           <div className="w-full h-full flex flex-col justify-center">
             <div className="bg-[#01141f] p-5 rounded-t-lg flex justify-center">
               <p className="uppercase text-xl text-white">
@@ -68,6 +70,37 @@ const MainPage = () => {
                 })}
               </p>
             </div>
+          </div>
+          <div className="text-white text-[1.5rem]">
+            <p>
+              {">"}
+              {">"} As aplicações cadastradas aparecerão na tabela ao lado,
+              exibindo assim todos os dados fornecidos no momento da operação de
+              registro da aplicação.
+              <br />
+              {">"}
+              {">"} Além disso, ao final da tabela, é mostrado o valor total
+              investido pelo usuário.
+            </p>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-20 items-center text-right">
+          <div className="text-white text-[1.5rem]">
+            <p>
+              {">"}
+              {">"} O nosso software também conta com uma exibição dinâmica dos
+              dados fornecidos.
+              <br />
+              {">"}
+              {">"} Por exemplo, com o gráfico ao lado, é possível visualizar a
+              influencia que cada ativo exerce em sua carteira, tornando
+              possível uma análise mais assertiva e concreta acerca do seu
+              patrimônio.
+              <br />
+              {">"}
+              {">"} Note que, com o ponteiro do mouse, você é capaz de
+              identificar os ativos em cada porção do gráfico.
+            </p>
           </div>
           <div className="flex flex-col justify-center items-center">
             <Chart acoes={acoes} />
