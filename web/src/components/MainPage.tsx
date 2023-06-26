@@ -18,6 +18,14 @@ const MainPage = () => {
       .then((data) => setAcoes(data))
   }, [])
 
+  const totalSharesValue = () => {
+    let soma = 0
+    acoes.map((acao) => {
+      soma += acao.valor_total
+    })
+    return soma
+  }
+
   return (
     <>
       <div className="bg-[#102533] h-screen max-h-max w-full py-14 px-5 flex flex-col gap-44">
