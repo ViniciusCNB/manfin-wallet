@@ -1,14 +1,18 @@
-import MainPage from "./components/MainPage"
-import MenuBar from "./components/MenuBar"
+import HomePage from "./pages/HomePage"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import "./styles/main.css"
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+])
 
 const App = () => {
   return (
     <>
-      <div>
-        <MenuBar />
-        <MainPage />
-      </div>
+      <RouterProvider router={router} />
     </>
   )
 }

@@ -5,7 +5,7 @@ import { AcaoProps } from "../types"
 import Operations from "./Operations"
 import Chart from "./Chart"
 
-const MainPage = () => {
+const HomeBody = () => {
   const [acoes, setAcoes] = useState<AcaoProps[]>([])
 
   useEffect(() => {
@@ -114,4 +114,4 @@ const MainPage = () => {
   )
 }
 
-export default MainPage
+export default HomeBody

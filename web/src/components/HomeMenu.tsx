@@ -1,7 +1,7 @@
 import "../styles/index.css"
 import Fundo from "../assets/fundo-app.jpg"
 
-const MenuBar = () => {
+const HomeMenu = () => {
   return (
     <div className="relative">
       <img
@@ -27,4 +27,4 @@ const MenuBar = () => {
   )
 }
 
-export default MenuBar
+export default HomeMenu
