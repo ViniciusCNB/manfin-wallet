@@ -39,7 +39,7 @@ const AddStockModal = () => {
 
         <Dialog.Content className="fixed bg-[#194762]/90 py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[30rem] h-[41.7rem] shadow-lg shadow-black/25">
           <Dialog.Title className="bg-[#01141f] rounded-lg uppercase py-4 text-2xl text-center font-extrabold mb-10 shadow-lg shadow-black/25">
-            Adicionar Nova Ação
+            Adicionar Nova Aplicação
           </Dialog.Title>
 
           <form onSubmit={handleSubmit(onSubmit)} className="relative">
