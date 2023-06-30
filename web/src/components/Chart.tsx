@@ -14,7 +14,6 @@ const Chart = (props: ChartProps) => {
     return data
   }
 
-  console.log(fillData())
   return (
     <PieChart className="w-full" width={400} height={400}>
       <Pie

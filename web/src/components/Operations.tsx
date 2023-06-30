@@ -1,12 +1,13 @@
-import { useState } from "react"
+import { useState, lazy, Suspense } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import AddInstitutionModal from "./AddInstitutionModal"
-import AddStockModal from "./AddStockModal"
+
+const LazyAddStockModal = lazy(() => import("./AddStockModal"))
 
 const Operations = () => {
   const [open1, setOpen1] = useState(false)
   const [open2, setOpen2] = useState(false)
-  
+
   return (
     <div className="bg-gray-200/80 flex flex-col   h-fit justify-center rounded-lg">
       <div className="bg-[#01141f] p-5 rounded-t-lg flex justify-center">
@@ -26,7 +27,11 @@ const Operations = () => {
             Adicionar nova aplicação
           </Dialog.Trigger>
 
-          <AddStockModal />
+          {open2 && (
+            <Suspense>
+              <LazyAddStockModal />
+            </Suspense>
+          )}
         </Dialog.Root>
       </div>
     </div>
