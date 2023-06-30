@@ -1,4 +1,4 @@
-const PageNotFoundPage = () => {
+const NotFoundPage = () => {
   return (
     <>
       <div className="bg-gradient-to-l from-[#033959] to-[#01141f] h-screen w-screen text-white p-24 text-6xl grid grid-cols-2 gap-14 border-b-2 border-r-2">
@@ -16,4 +16,4 @@ const PageNotFoundPage = () => {
   )
 }
 
-export default PageNotFoundPage
+export default NotFoundPage
