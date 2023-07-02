@@ -4,6 +4,7 @@ import { AcaoProps } from "../types"
 import StockCard from "./StockCard"
 import  * as Dialog from "@radix-ui/react-dialog"
 import AddInstitutionModal from "./AddInstitutionModal"
+import { Link } from "react-router-dom"
 
 const LazyAddStockModal = lazy(() => import("./AddStockModal"))
 
@@ -32,9 +33,18 @@ const PortfolioBody = () => {
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col">
         <div className="bg-[#01141f] w-full h-[15%] flex flex-row justify-between items-center p-4 shadow-md">
-          <span className="text-[#eff3f6] text-[2.5rem] h-fit pr-6 border-r-2">
-            ManFin Wallet
-          </span>
+          <div className="flex items-center">
+            <span className="text-[#eff3f6] text-[2.5rem] h-fit pr-6 border-r-2">
+              ManFin Wallet
+            </span>
+            <Link
+              to="/"
+              className="bg-[#01141f] ml-6 font-normal text-[1.75rem] border-[1px] rounded-lg px-2 py-1 text-white hover:bg-[#012234]"
+              title="Ir para a Home"
+            >
+              Home
+            </Link>
+          </div>
           <div className="text-[#eff3f6] text-[1.5rem] h-fit uppercase flex flex-row gap-2">
             <span>Total Investido:</span>
             <span>
