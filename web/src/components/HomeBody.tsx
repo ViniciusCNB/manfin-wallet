@@ -1,27 +1,59 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
 import StockCard from "./StockCard"
 import { AcaoProps } from "../types"
-import Operations from "./Operations"
 import Chart from "./Chart"
+import { Link } from "react-router-dom"
 
 const HomeBody = () => {
-  const [acoes, setAcoes] = useState<AcaoProps[]>([])
-
-  useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/acao/")
-      .then((response) => response.data)
-      .then((data) => setAcoes(data))
-  }, [])
-
   const totalSharesValue = () => {
     let soma = 0
-    acoes.map((acao) => {
+    data.map((acao) => {
       soma += acao.valor_total
     })
     return soma
   }
+
+  const data: AcaoProps[] = [
+    {
+      codigo: "BBAS3",
+      data_atualizacao: "2023-03-15",
+      instituicao: "RICO",
+      preco: 41.58,
+      quantidade: 100,
+      valor_total: 4158,
+    },
+    {
+      codigo: "PETR4",
+      data_atualizacao: "2022-10-25",
+      instituicao: "RICO",
+      preco: 29.53,
+      quantidade: 30,
+      valor_total: 885.9,
+    },
+    {
+      codigo: "VALE3",
+      data_atualizacao: "2022-05-03",
+      instituicao: "RICO",
+      preco: 64.23,
+      quantidade: 50,
+      valor_total: 3211.5,
+    },
+    {
+      codigo: "CASH3",
+      data_atualizacao: "2021-02-15",
+      instituicao: "RICO",
+      preco: 8.8,
+      quantidade: 10,
+      valor_total: 88.0,
+    },
+    {
+      codigo: "MXRF11",
+      data_atualizacao: "2020-12-10",
+      instituicao: "RICO",
+      preco: 10.07,
+      quantidade: 30,
+      valor_total: 302.1,
+    },
+  ]
 
   return (
     <>
@@ -37,7 +69,24 @@ const HomeBody = () => {
               forma, seja possível adicionar novas aplicações.
             </p>
           </div>
-          <Operations />
+          <div className="flex justify-center">
+            <div className="bg-[#01141f]/50 border-4 flex flex-col w-[60%] h-fit justify-center">
+              <div className="bg-[#01141f] p-5 flex justify-center border-[1px]">
+                <p className="uppercase font-bold text-xl text-white">
+                  Operações disponíveis
+                </p>
+              </div>
+              <div className="divide-y-[1px] divide-[#01141f]">
+                <div className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-white">
+                  Adicionar nova instituição
+                </div>
+
+                <div className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-white">
+                  Adicionar nova aplicação
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="grid h-full grid-cols-2 text-left gap-20 items-center">
           <div className="w-full h-full flex flex-col justify-center">
@@ -47,7 +96,7 @@ const HomeBody = () => {
               </p>
             </div>
             <div className="bg-gray-200/80 h-96 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] divide-y-[1px] divide-gray-800 rounded-b-lg">
-              {acoes.map((acao) => {
+              {data.map((acao) => {
                 return (
                   <StockCard
                     key={acao.codigo}
@@ -103,11 +152,19 @@ const HomeBody = () => {
             </p>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <Chart acoes={acoes} />
+            <Chart acoes={data} />
             <div className="flex text-center text-white text-2xl uppercase">
               <p>Distribuição dos Ativos</p>
             </div>
           </div>
+        </div>
+        <div className="flex justify-center items-center">
+          <Link
+            to="/portfolio"
+            className="bg-[#01141f] p-4 uppercase rounded-lg text-white text-2xl border-2 hover:bg-[#01141f]/50"
+          >
+            Ir para a aplicação
+          </Link>
         </div>
       </div>
     </>

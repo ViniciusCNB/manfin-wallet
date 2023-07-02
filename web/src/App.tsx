@@ -1,7 +1,8 @@
-import HomePage from "./pages/HomePage"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import "./styles/main.css"
+import HomePage from "./pages/HomePage"
 import NotFoundPage from "./pages/NotFoundPage"
+import PortfolioPage from "./pages/PortfolioPage"
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/portfolio",
-    element: <h1>TESTE</h1>
+    element: <PortfolioPage />
   }
 ])
 
