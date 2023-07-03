@@ -58,11 +58,12 @@ const HomeBody = () => {
   return (
     <>
       <div className="bg-gradient-to-l from-[#204662] to-[#102533] h-fit max-h-max w-full py-14 px-5 flex flex-col gap-28">
-        <div className="grid grid-cols-2 gap-20 items-center text-right">
+        <div className="grid grid-cols-2 gap-20 items-center text-left">
           <div className="text-white text-[1.5rem]">
             <p>
               {">"}
-              {">"} Realize operações na sua carteira com as opções ao lado.
+              {">"} Realize operações na sua carteira como as que estão
+              presentes ao lado.
               <br />
               {">"}
               {">"} Adicione uma nova instituição financeira para que, dessa
@@ -123,26 +124,26 @@ const HomeBody = () => {
           <div className="text-white text-[1.5rem]">
             <p>
               {">"}
-              {">"} As aplicações cadastradas aparecerão na tabela ao lado,
-              exibindo assim todos os dados fornecidos no momento da operação de
-              registro da aplicação.
+              {">"} As aplicações cadastradas aparecerão em uma tabela como ao
+              lado, exibindo assim todos os dados fornecidos no momento da
+              operação de registro da aplicação.
               <br />
               {">"}
-              {">"} Além disso, ao final da tabela, é mostrado o valor total
+              {">"} Além disso, é possível visualizar também o valor total
               investido pelo usuário.
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-20 items-center text-right">
+        <div className="grid grid-cols-2 gap-20 items-center text-left">
           <div className="text-white text-[1.5rem]">
             <p>
               {">"}
-              {">"} O nosso software também conta com uma exibição dinâmica dos
-              dados fornecidos.
+              {">"} O software também conta com uma exibição dinâmica dos dados
+              fornecidos.
               <br />
               {">"}
               {">"} Por exemplo, com o gráfico ao lado, é possível visualizar a
-              influencia que cada ativo exerce em sua carteira, tornando
+              influência que cada ativo exerce em sua carteira, tornando
               possível uma análise mais assertiva e concreta acerca do seu
               patrimônio.
               <br />
