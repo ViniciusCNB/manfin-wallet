@@ -57,9 +57,9 @@ const HomeBody = () => {
 
   return (
     <>
-      <div className="bg-gradient-to-l from-[#204662] to-[#102533] h-fit max-h-max w-full py-14 px-5 flex flex-col gap-28">
+      <div className="bg-gradient-to-l from-[#204662] to-[#102533] h-fit max-h-max w-full py-14 px-10 flex flex-col gap-28">
         <div className="grid grid-cols-2 gap-20 items-center text-left">
-          <div className="text-white text-[1.5rem]">
+          <div className="text-white bg-slate-500/50 p-5 rounded-lg border-2 text-[1.5rem]">
             <p>
               {">"}
               {">"} Realize operações na sua carteira como as que estão
@@ -121,7 +121,7 @@ const HomeBody = () => {
               </p>
             </div>
           </div>
-          <div className="text-white text-[1.5rem]">
+          <div className="text-white bg-slate-500/50 p-5 rounded-lg border-2 text-[1.5rem]">
             <p>
               {">"}
               {">"} As aplicações cadastradas aparecerão em uma tabela como ao
@@ -135,7 +135,7 @@ const HomeBody = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-20 items-center text-left">
-          <div className="text-white text-[1.5rem]">
+          <div className="text-white bg-slate-500/50 p-5 rounded-lg border-2 text-[1.5rem]">
             <p>
               {">"}
               {">"} O software também conta com uma exibição dinâmica dos dados
