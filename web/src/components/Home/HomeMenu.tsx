@@ -1,5 +1,4 @@
-import "../styles/index.css"
-import Fundo from "../assets/fundo-app.jpg"
+import Fundo from "../../assets/fundo-app.jpg"
 
 const HomeMenu = () => {
   return (

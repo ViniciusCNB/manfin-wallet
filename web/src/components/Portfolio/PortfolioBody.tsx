@@ -1,8 +1,8 @@
 import axios from "axios"
 import { Suspense, useEffect, useState, lazy } from "react"
-import { AcaoProps } from "../types"
+import { AcaoProps } from "../../types"
 import StockCard from "./StockCard"
-import  * as Dialog from "@radix-ui/react-dialog"
+import * as Dialog from "@radix-ui/react-dialog"
 import AddInstitutionModal from "./AddInstitutionModal"
 import { Link } from "react-router-dom"
 import Chart from "react-apexcharts"
@@ -197,12 +197,12 @@ const PortfolioBody = () => {
                 Distribuição por Instituição
               </span>
               <Chart
-              type="bar"
-              series={BarChartSeries}
-              options={BarChartOptions}
-              width={500}
-              height={300}
-            />
+                type="bar"
+                series={BarChartSeries}
+                options={BarChartOptions}
+                width={500}
+                height={300}
+              />
             </div>
             <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5">
               <span className="uppercase text-xl text-[#01141f] font-bold">

@@ -1,5 +1,5 @@
 import { PieChart, Pie, Tooltip } from "recharts"
-import { AcaoProps } from "../types"
+import { AcaoProps } from "../../types"
 
 interface ChartProps {
   acoes: AcaoProps[]

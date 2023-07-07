@@ -1,4 +1,4 @@
-import PortfolioBody from "../components/PortfolioBody"
+import PortfolioBody from "../components/Portfolio/PortfolioBody"
 
 const PortfolioPage = () => {
   return (

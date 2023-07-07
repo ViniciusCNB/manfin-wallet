@@ -1,5 +1,5 @@
-import HomeBody from "../components/HomeBody"
-import HomeMenu from "../components/HomeMenu"
+import HomeBody from "../components/Home/HomeBody"
+import HomeMenu from "../components/Home/HomeMenu"
 
 const HomePage = () => {
   return (

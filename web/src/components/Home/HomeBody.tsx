@@ -1,5 +1,5 @@
-import StockCard from "./StockCard"
-import { AcaoProps } from "../types"
+import StockCard from "../Portfolio/StockCard"
+import { AcaoProps } from "../../types"
 import Chart from "./Chart"
 import { Link } from "react-router-dom"
 
