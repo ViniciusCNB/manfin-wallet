@@ -6,6 +6,7 @@ import * as Dialog from "@radix-ui/react-dialog"
 import AddInstitutionModal from "./AddInstitutionModal"
 import { Link } from "react-router-dom"
 import Chart from "react-apexcharts"
+import { totalSharesValue } from "../../utils"
 
 const LazyAddStockModal = lazy(() => import("./AddStockModal"))
 
@@ -20,14 +21,6 @@ const PortfolioBody = () => {
       .then((response) => response.data)
       .then((data) => setAcoes(data))
   }, [])
-
-  const totalSharesValue = () => {
-    let soma = 0
-    acoes.map((acao) => {
-      soma += acao.valor_total
-    })
-    return soma
-  }
 
   const data_codigo: string[] = []
   const data_valor: number[] = []
@@ -109,8 +102,6 @@ const PortfolioBody = () => {
     },
   }
 
-  console.log(nomes_inst)
-  console.log(quantidades_inst)
   return (
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col">
@@ -131,7 +122,7 @@ const PortfolioBody = () => {
             <span>Total Investido:</span>
             <span>
               R${" "}
-              {totalSharesValue().toLocaleString("pt-BR", {
+              {totalSharesValue(acoes).toLocaleString("pt-BR", {
                 minimumFractionDigits: 2,
               })}
             </span>

@@ -2,15 +2,9 @@ import StockCard from "../Portfolio/StockCard"
 import { AcaoProps } from "../../types"
 import Chart from "./Chart"
 import { Link } from "react-router-dom"
+import { totalSharesValue } from "../../utils"
 
 const HomeBody = () => {
-  const totalSharesValue = () => {
-    let soma = 0
-    data.map((acao) => {
-      soma += acao.valor_total
-    })
-    return soma
-  }
 
   const data: AcaoProps[] = [
     {
@@ -115,7 +109,7 @@ const HomeBody = () => {
               <p>Total Investido</p>
               <p>
                 R${" "}
-                {totalSharesValue().toLocaleString("pt-BR", {
+                {totalSharesValue(data).toLocaleString("pt-BR", {
                   minimumFractionDigits: 2,
                 })}
               </p>
