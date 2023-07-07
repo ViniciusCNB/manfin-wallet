@@ -81,7 +81,12 @@ const PortfolioBody = () => {
     ],
   }
 
-  const BarChartSeries = quantidades_inst
+  const BarChartSeries = [
+    {
+      name: "Quantidade de ativos",
+      data: quantidades_inst,
+    },
+  ]
 
   const BarChartOptions = {
     chart: {
@@ -89,8 +94,9 @@ const PortfolioBody = () => {
     },
     plotOptions: {
       bar: {
-        borderRadius: 4,
+        borderRadius: 2,
         horizontal: true,
+        barHeight: "50%",
       },
     },
     xaxis: {
@@ -182,8 +188,8 @@ const PortfolioBody = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row gap-10 justify-center w-full h-fit p-6">
-            <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5">
+          <div className="flex flex-row gap-10 justify-start w-full h-fit p-6">
+            <div className="flex flex-col h-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7">
               <span className="uppercase text-xl text-[#01141f] font-bold">
                 Distribuição por Instituição
               </span>
@@ -191,8 +197,8 @@ const PortfolioBody = () => {
                 type="bar"
                 series={BarChartSeries}
                 options={BarChartOptions}
-                width={500}
-                height={300}
+                width={300}
+                height={200}
               />
             </div>
             <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5">
