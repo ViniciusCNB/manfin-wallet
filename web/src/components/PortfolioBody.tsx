@@ -28,42 +28,89 @@ const PortfolioBody = () => {
     })
     return soma
   }
+
   const data_codigo: string[] = []
   const data_valor: number[] = []
-
+  const data_inst: string[] = []
   const fillData = () => {
     acoes.map((acao: AcaoProps) => {
       data_codigo.push(acao.codigo)
       data_valor.push(acao.valor_total)
+      data_inst.push(acao.instituicao)
     })
   }
   fillData()
 
+  const nomes_inst: string[] = []
+  const quantidades_inst: number[] = []
+  const contaInstituicao = () => {
+    const contagem: { [key: string]: number } = {}
+
+    for (let i = 0; i < data_inst.length; i++) {
+      const elemento = data_inst[i]
+      if (contagem[elemento]) {
+        contagem[elemento]++
+      } else {
+        contagem[elemento] = 1
+      }
+    }
+
+    for (const nome in contagem) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (contagem.hasOwnProperty(nome)) {
+        nomes_inst.push(nome)
+        quantidades_inst.push(contagem[nome])
+      }
+    }
+  }
+  contaInstituicao()
+
+  const PieChartSeries = data_valor
+
+  const PieChartOptions = {
+    chart: {
+      width: 380,
+      id: "basic-pie",
+    },
+    labels: data_codigo,
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200,
+          },
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
+    ],
+  }
+
+  const BarChartSeries = quantidades_inst
+
   const BarChartOptions = {
     chart: {
       id: "basic-bar",
-      background: "#e5e7eb",
+    },
+    plotOptions: {
+      bar: {
+        borderRadius: 4,
+        horizontal: true,
+      },
     },
     xaxis: {
-      categories: data_codigo,
+      categories: nomes_inst,
     },
     colors: ["#00070b"],
     dataLabels: {
       enabled: true,
-      style: {
-        colors: ["#01141f"],
-      },
     },
   }
 
-  const BarChartSeries = [
-    {
-      name: "Saldo Atual",
-      data: data_valor,
-    },
-  ]
-
-  console.log(BarChartSeries)
+  console.log(nomes_inst)
+  console.log(quantidades_inst)
   return (
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col">
@@ -90,9 +137,9 @@ const PortfolioBody = () => {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-10 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f]">
+        <div className="flex flex-col gap-1 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] pb-32">
           <div className="w-full h-[75%] flex flex-row p-6 gap-6">
-            <div className="bg-gray-200 flex flex-col w-[25%] h-fit justify-center rounded-lg">
+            <div className="bg-gray-300 flex flex-col w-[25%] h-fit justify-center rounded-lg">
               <div className="bg-[#01141f] p-5 flex justify-center rounded-t-lg">
                 <p className="uppercase text-xl text-white">
                   Operações disponíveis
@@ -127,7 +174,7 @@ const PortfolioBody = () => {
                   Aplicações Cadastradas
                 </p>
               </div>
-              <div className="bg-gray-200 h-96 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] divide-y-[1px] divide-gray-800 rounded-b-lg">
+              <div className="bg-gray-300 h-96 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] divide-y-[1px] divide-gray-800 rounded-b-lg">
                 {acoes.map((acao) => {
                   return (
                     <StockCard
@@ -144,14 +191,31 @@ const PortfolioBody = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-end w-full h-fit p-6">
-            <Chart
+          <div className="flex flex-row gap-10 justify-center w-full h-fit p-6">
+            <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5">
+              <span className="uppercase text-xl text-[#01141f] font-bold">
+                Distribuição por Instituição
+              </span>
+              <Chart
               type="bar"
               series={BarChartSeries}
               options={BarChartOptions}
-              width={800}
+              width={500}
               height={300}
             />
+            </div>
+            <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5">
+              <span className="uppercase text-xl text-[#01141f] font-bold">
+                Distribuição dos Ativos
+              </span>
+              <Chart
+                type="pie"
+                series={PieChartSeries}
+                options={PieChartOptions}
+                width={600}
+                height={300}
+              />
+            </div>
           </div>
         </div>
       </div>
