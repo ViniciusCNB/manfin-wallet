@@ -1,3 +1,8 @@
+import * as Dialog from "@radix-ui/react-dialog"
+import { useState } from "react"
+import DeleteStockModal from "./DeleteStockModal"
+import { Trash } from "@phosphor-icons/react"
+
 interface StockCardProps {
   codigo: string
   instituicao: string
@@ -8,9 +13,11 @@ interface StockCardProps {
 }
 
 const StockCard = (props: StockCardProps) => {
+  const [open, setOpen] = useState(false)
+
   return (
     <>
-      <div className="w-full grid grid-cols-6 py-2 text-center divide-x-2 divide-[#01141f]">
+      <div className="w-full grid grid-cols-7 py-2 text-center divide-x-2 divide-[#01141f]">
         <div className="flex justify-center">
           <p>
             <span className="font-bold text-[#01141f]">Ativo</span> <br />
@@ -51,6 +58,15 @@ const StockCard = (props: StockCardProps) => {
               minimumFractionDigits: 2,
             })}
           </p>
+        </div>
+        <div className="flex justify-center items-center">
+          <Dialog.Root open={open} onOpenChange={setOpen}>
+            <Dialog.Trigger className="hover:bg-gray-400 p-3 rounded-[50%]">
+              <Trash size={20} weight="bold" />
+            </Dialog.Trigger>
+
+            <DeleteStockModal codigo={props.codigo} />
+          </Dialog.Root>
         </div>
       </div>
     </>
