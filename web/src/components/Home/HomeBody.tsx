@@ -1,11 +1,9 @@
-import StockCard from "../Portfolio/StockCard"
 import { AcaoProps } from "../../types"
 import Chart from "./Chart"
 import { Link } from "react-router-dom"
 import { totalSharesValue } from "../../utils"
 
 const HomeBody = () => {
-
   const data: AcaoProps[] = [
     {
       codigo: "BBAS3",
@@ -93,15 +91,62 @@ const HomeBody = () => {
             <div className="bg-gray-200/80 h-96 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] divide-y-[1px] divide-gray-800 rounded-b-lg">
               {data.map((acao) => {
                 return (
-                  <StockCard
-                    key={acao.codigo}
-                    codigo={acao.codigo}
-                    data_atualizacao={acao.data_atualizacao}
-                    instituicao={acao.instituicao}
-                    preco={acao.preco}
-                    quantidade={acao.quantidade}
-                    valor_total={acao.valor_total}
-                  />
+                  <div className="w-full grid grid-cols-6 py-2 text-center divide-x-2 divide-[#01141f]">
+                    <div className="flex justify-center">
+                      <p>
+                        <span className="font-bold text-[#01141f]">Ativo</span>{" "}
+                        <br />
+                        {acao.codigo}
+                      </p>
+                    </div>
+                    <div className="flex justify-center">
+                      <p>
+                        <span className="font-bold text-[#01141f]">
+                          Data da Compra
+                        </span>
+                        <br /> {acao.data_atualizacao}
+                      </p>
+                    </div>
+                    <div className="flex justify-center">
+                      <p>
+                        <span className="font-bold text-[#01141f]">
+                          Instituição
+                        </span>{" "}
+                        <br />
+                        {acao.instituicao}
+                      </p>
+                    </div>
+                    <div className="flex justify-center">
+                      <p>
+                        <span className="font-bold text-[#01141f]">Preço</span>{" "}
+                        <br /> R${" "}
+                        {acao.preco.toLocaleString("pt-BR", {
+                          minimumFractionDigits: 2,
+                        })}
+                      </p>
+                    </div>
+                    <div className="flex justify-center">
+                      <p>
+                        <span className="font-bold text-[#01141f]">
+                          Quantidade
+                        </span>{" "}
+                        <br />
+                        {acao.quantidade}
+                      </p>
+                    </div>
+                    <div className="flex justify-center">
+                      <p>
+                        <span className="font-bold text-[#01141f]">
+                          Saldo Atual
+                        </span>{" "}
+                        <br />
+                        R${" "}
+                        {acao.valor_total.toLocaleString("pt-BR", {
+                          minimumFractionDigits: 2,
+                        })}
+                      </p>
+                    </div>
+                  </div>
                 )
               })}
             </div>
