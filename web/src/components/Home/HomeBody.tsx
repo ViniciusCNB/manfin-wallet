@@ -1,5 +1,5 @@
 import { AcaoProps } from "../../types"
-import Chart from "./Chart"
+import Chart from "react-apexcharts"
 import { Link } from "react-router-dom"
 import { totalSharesValue } from "../../utils"
 
@@ -46,6 +46,25 @@ const HomeBody = () => {
       valor_total: 302.1,
     },
   ]
+
+  const PieChartSeries = data.map((acao) => {
+    return acao.valor_total
+  })
+
+  const PieChartOptions = {
+    chart: {
+      id: "basic-pie",
+    },
+    labels: data.map((acao) => {
+      return acao.codigo
+    }),
+    legend: {
+      labels: {
+        colors: "#fff",
+        useSeriesColors: true
+      }
+    },
+  }
 
   return (
     <>
@@ -191,11 +210,17 @@ const HomeBody = () => {
               identificar os ativos em cada porção do gráfico.
             </p>
           </div>
-          <div className="flex flex-col justify-center items-center">
-            <Chart acoes={data} />
-            <div className="flex text-center text-white text-2xl uppercase">
-              <p>Distribuição dos Ativos</p>
-            </div>
+          <div className="flex flex-col text-center gap-8 items-center">
+            <Chart
+              type="pie"
+              series={PieChartSeries}
+              options={PieChartOptions}
+              width={500}
+              height={300}
+            />
+            <span className="text-white text-2xl uppercase">
+              Distribuição dos Ativos
+            </span>
           </div>
         </div>
         <div className="flex justify-center items-center">

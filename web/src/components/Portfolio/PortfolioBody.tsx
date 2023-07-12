@@ -22,13 +22,9 @@ const PortfolioBody = () => {
       .then((data) => setAcoes(data))
   }, [])
 
-  const data_codigo: string[] = []
-  const data_valor: number[] = []
   const data_inst: string[] = []
   const fillData = () => {
     acoes.map((acao: AcaoProps) => {
-      data_codigo.push(acao.codigo)
-      data_valor.push(acao.valor_total)
       data_inst.push(acao.instituicao)
     })
   }
@@ -58,27 +54,19 @@ const PortfolioBody = () => {
   }
   contaInstituicao()
 
-  const PieChartSeries = data_valor
+  const PieChartSeries = acoes.map((acao) => acao.valor_total)
 
   const PieChartOptions = {
     chart: {
-      width: 380,
       id: "basic-pie",
     },
-    labels: data_codigo,
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200,
-          },
-          legend: {
-            position: "bottom",
-          },
-        },
+    labels: acoes.map((acao) => acao.codigo),
+    legend: {
+      labels: {
+        colors: "#fff",
+        useSeriesColors: true,
       },
-    ],
+    },
   }
 
   const BarChartSeries = [
