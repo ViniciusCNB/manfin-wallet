@@ -1,12 +1,12 @@
-import axios from "axios"
 import { Suspense, useEffect, useState, lazy } from "react"
-import { AcaoProps } from "../../types"
-import StockCard from "./StockCard"
+import axios from "axios"
 import * as Dialog from "@radix-ui/react-dialog"
-import AddInstitutionModal from "./AddInstitutionModal"
 import { Link } from "react-router-dom"
 import Chart from "react-apexcharts"
-import { totalSharesValue } from "../../utils"
+import { AcaoProps } from "../../types"
+import { contaInstituicao, fillData, totalSharesValue } from "../../utils"
+import StockCard from "./StockCard"
+import AddInstitutionModal from "./AddInstitutionModal"
 
 const LazyAddStockModal = lazy(() => import("./AddStockModal"))
 
@@ -23,36 +23,11 @@ const PortfolioBody = () => {
   }, [])
 
   const data_inst: string[] = []
-  const fillData = () => {
-    acoes.map((acao: AcaoProps) => {
-      data_inst.push(acao.instituicao)
-    })
-  }
-  fillData()
+  fillData(acoes, data_inst)
 
   const nomes_inst: string[] = []
   const quantidades_inst: number[] = []
-  const contaInstituicao = () => {
-    const contagem: { [key: string]: number } = {}
-
-    for (let i = 0; i < data_inst.length; i++) {
-      const elemento = data_inst[i]
-      if (contagem[elemento]) {
-        contagem[elemento]++
-      } else {
-        contagem[elemento] = 1
-      }
-    }
-
-    for (const nome in contagem) {
-      // eslint-disable-next-line no-prototype-builtins
-      if (contagem.hasOwnProperty(nome)) {
-        nomes_inst.push(nome)
-        quantidades_inst.push(contagem[nome])
-      }
-    }
-  }
-  contaInstituicao()
+  contaInstituicao(data_inst, nomes_inst, quantidades_inst)
 
   const PieChartSeries = acoes.map((acao) => acao.valor_total)
 

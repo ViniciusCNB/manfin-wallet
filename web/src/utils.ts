@@ -11,6 +11,34 @@ export const totalSharesValue = (acoes: AcaoProps[]) => {
   return soma
 }
 
+export const fillData = (acoes: AcaoProps[], data_inst: string[]) => {
+  acoes.map((acao: AcaoProps) => {
+    data_inst.push(acao.instituicao)
+  })
+}
+
+export const contaInstituicao = (data_inst: string[], nomes_inst: string[], quantidades_inst: number[]) => {
+  const contagem: { [key: string]: number } = {}
+
+  for (let i = 0; i < data_inst.length; i++) {
+    const elemento = data_inst[i]
+    if (contagem[elemento]) {
+      contagem[elemento]++
+    } else {
+      contagem[elemento] = 1
+    }
+  }
+
+  for (const nome in contagem) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (contagem.hasOwnProperty(nome)) {
+      nomes_inst.push(nome)
+      quantidades_inst.push(contagem[nome])
+    }
+  }
+}
+
+
 
 // CONFIGURAÇÃO DOS GRÁFICOS
 
