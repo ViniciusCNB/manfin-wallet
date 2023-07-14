@@ -13,6 +13,7 @@ import {
 } from "../../utils"
 import StockCard from "./StockCard"
 import AddInstitutionModal from "./AddInstitutionModal"
+import { House } from "@phosphor-icons/react"
 
 const LazyAddStockModal = lazy(() => import("./AddStockModal"))
 
@@ -113,19 +114,15 @@ const PortfolioBody = () => {
 
   return (
     <>
-      <div className="bg-[#eff3f6] w-screen h-screen flex flex-col">
+      <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
         <div className="bg-[#01141f] w-full h-[15%] flex flex-row justify-between items-center p-4 shadow-md">
           <div className="flex items-center">
             <span className="text-[#eff3f6] text-[2.5rem] h-fit pr-6 border-r-2">
               ManFin Wallet
             </span>
-            <Link
-              to="/"
-              className="bg-[#01141f] ml-6 font-normal text-[1.75rem] border-[1px] rounded-lg px-2 py-1 text-white hover:bg-[#012234]"
-              title="Ir para a Home"
-            >
-              Home
-            </Link>
+            <span className="text-[#eff3f6] ml-6 text-[2.5rem]">
+              Portfolio
+            </span>
           </div>
           <div className="text-[#eff3f6] text-[1.5rem] h-fit uppercase flex flex-row gap-2">
             <span>Total Investido:</span>
@@ -139,13 +136,13 @@ const PortfolioBody = () => {
         </div>
         <div className="flex flex-col gap-1 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] pb-32">
           <div className="w-full h-[75%] flex flex-row p-6 gap-6">
-            <div className="bg-gray-300 flex flex-col w-[25%] h-fit justify-center rounded-lg">
+            <div className="flex flex-col w-[25%] h-full justify-center rounded-lg">
               <div className="bg-[#01141f] p-5 flex justify-center rounded-t-lg">
                 <p className="uppercase text-xl text-white">
                   Operações disponíveis
                 </p>
               </div>
-              <div className="divide-y-[1px] divide-[#01141f]">
+              <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#01141f]">
                 <Dialog.Root open={open1} onOpenChange={setOpen1}>
                   <Dialog.Trigger className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase">
                     Adicionar nova instituição
@@ -155,7 +152,7 @@ const PortfolioBody = () => {
                 </Dialog.Root>
 
                 <Dialog.Root open={open2} onOpenChange={setOpen2}>
-                  <Dialog.Trigger className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase">
+                  <Dialog.Trigger className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase rounded-b-lg">
                     Adicionar nova aplicação
                   </Dialog.Trigger>
 
@@ -232,6 +229,13 @@ const PortfolioBody = () => {
             </div>
           </div>
         </div>
+        <Link
+          to="/"
+          className="bg-[#01141f] absolute bottom-2 right-4 p-3 rounded-[50%] hover:bg-[#012234]"
+          title="Ir para a Home"
+        >
+          <House size={20} color="white" weight="fill" />
+        </Link>
       </div>
     </>
   )
