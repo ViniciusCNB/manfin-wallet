@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog"
 import { useState } from "react"
 import DeleteStockModal from "./DeleteStockModal"
 import { Trash } from "@phosphor-icons/react"
+import { formataData } from "../../utils"
 
 interface StockCardProps {
   codigo: string
@@ -28,7 +29,7 @@ const StockCard = (props: StockCardProps) => {
           <div className="flex justify-center">
             <p>
               <span className="font-bold text-[#01141f]">Data da Compra</span>
-              <br /> {props.data_atualizacao}
+              <br /> {formataData(props.data_atualizacao)}
             </p>
           </div>
           <div className="flex justify-center">

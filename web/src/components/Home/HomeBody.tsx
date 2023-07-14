@@ -1,7 +1,7 @@
 import { AcaoProps } from "../../types"
 import Chart from "react-apexcharts"
 import { Link } from "react-router-dom"
-import { totalSharesValue } from "../../utils"
+import { formataData, totalSharesValue } from "../../utils"
 
 const HomeBody = () => {
   const data: AcaoProps[] = [
@@ -123,7 +123,7 @@ const HomeBody = () => {
                         <span className="font-bold text-[#01141f]">
                           Data da Compra
                         </span>
-                        <br /> {acao.data_atualizacao}
+                        <br /> {formataData(acao.data_atualizacao)}
                       </p>
                     </div>
                     <div className="flex justify-center">
