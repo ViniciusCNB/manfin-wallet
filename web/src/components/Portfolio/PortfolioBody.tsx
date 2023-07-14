@@ -4,7 +4,12 @@ import * as Dialog from "@radix-ui/react-dialog"
 import { Link } from "react-router-dom"
 import Chart from "react-apexcharts"
 import { AcaoProps } from "../../types"
-import { contaInstituicao, fillData, totalSharesValue } from "../../utils"
+import {
+  compararPorValorTotal,
+  contaInstituicao,
+  fillData,
+  totalSharesValue,
+} from "../../utils"
 import StockCard from "./StockCard"
 import AddInstitutionModal from "./AddInstitutionModal"
 
@@ -135,19 +140,22 @@ const PortfolioBody = () => {
                 </p>
               </div>
               <div className="bg-gray-300 h-96 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] divide-y-[1px] divide-gray-800 rounded-b-lg">
-                {acoes.map((acao) => {
-                  return (
-                    <StockCard
-                      key={acao.codigo}
-                      codigo={acao.codigo}
-                      data_atualizacao={acao.data_atualizacao}
-                      instituicao={acao.instituicao}
-                      preco={acao.preco}
-                      quantidade={acao.quantidade}
-                      valor_total={acao.valor_total}
-                    />
-                  )
-                })}
+                {acoes
+                  .slice()
+                  .sort(compararPorValorTotal)
+                  .map((acao) => {
+                    return (
+                      <StockCard
+                        key={acao.codigo}
+                        codigo={acao.codigo}
+                        data_atualizacao={acao.data_atualizacao}
+                        instituicao={acao.instituicao}
+                        preco={acao.preco}
+                        quantidade={acao.quantidade}
+                        valor_total={acao.valor_total}
+                      />
+                    )
+                  })}
               </div>
             </div>
           </div>

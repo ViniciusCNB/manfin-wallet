@@ -38,6 +38,16 @@ export const contaInstituicao = (data_inst: string[], nomes_inst: string[], quan
   }
 }
 
+export const compararPorValorTotal = (a: AcaoProps, b: AcaoProps) => {
+  // Ordem descrescente
+  if (a.valor_total > b.valor_total) {
+    return -1;
+  }
+  if (a.valor_total < b.valor_total) {
+    return 1;
+  }
+  return 0;
+};
 
 
 // CONFIGURAÇÃO DOS GRÁFICOS
