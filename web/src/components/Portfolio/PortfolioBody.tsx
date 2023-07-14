@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import Chart from "react-apexcharts"
 import { AcaoProps } from "../../types"
 import {
+  compararPorDataAtualizacao,
   compararPorValorTotal,
   contaInstituicao,
   fillData,
@@ -19,6 +20,19 @@ const PortfolioBody = () => {
   const [acoes, setAcoes] = useState<AcaoProps[]>([])
   const [open1, setOpen1] = useState(false)
   const [open2, setOpen2] = useState(false)
+
+  const evoPatrimonio = () => {
+    let count = 0
+    const arr: number[] = []
+    acoes
+      .slice()
+      .sort(compararPorDataAtualizacao)
+      .map((acao) => {
+        count += acao.valor_total
+        arr.push(count)
+      })
+    return arr
+  }
 
   useEffect(() => {
     axios
@@ -74,6 +88,27 @@ const PortfolioBody = () => {
     dataLabels: {
       enabled: true,
     },
+  }
+
+  const AreaChartSeries = [
+    {
+      name: "Patrimônio",
+      data: evoPatrimonio(),
+    },
+  ]
+
+  const AreaChartOptions = {
+    chart: {
+      id: "basic-area",
+    },
+    labels: acoes
+      .slice()
+      .sort(compararPorDataAtualizacao)
+      .map((acao) => {
+        const data = new Date(acao.data_atualizacao)
+        const dataFormatada = data.toLocaleDateString("pt-BR")
+        return dataFormatada
+      }),
   }
 
   return (
@@ -159,19 +194,7 @@ const PortfolioBody = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row gap-10 justify-start w-full h-fit p-6">
-            <div className="flex flex-col h-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7">
-              <span className="uppercase text-xl text-[#01141f] font-bold">
-                Distribuição por Instituição
-              </span>
-              <Chart
-                type="bar"
-                series={BarChartSeries}
-                options={BarChartOptions}
-                width={300}
-                height={200}
-              />
-            </div>
+          <div className="grid grid-cols-2 gap-10 justify-start w-full h-fit p-6">
             <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5">
               <span className="uppercase text-xl text-[#01141f] font-bold">
                 Distribuição dos Ativos
@@ -182,6 +205,29 @@ const PortfolioBody = () => {
                 options={PieChartOptions}
                 width={600}
                 height={300}
+              />
+            </div>
+            <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5">
+              <span className="uppercase text-xl text-[#01141f] font-bold">
+                Evolução do Patrimônio
+              </span>
+              <Chart
+                type="area"
+                series={AreaChartSeries}
+                options={AreaChartOptions}
+                height={300}
+              />
+            </div>
+            <div className="flex flex-col h-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7">
+              <span className="uppercase text-xl text-[#01141f] font-bold">
+                Distribuição por Instituição
+              </span>
+              <Chart
+                type="bar"
+                series={BarChartSeries}
+                options={BarChartOptions}
+                width={300}
+                height={200}
               />
             </div>
           </div>
