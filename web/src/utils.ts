@@ -48,6 +48,20 @@ export const compararPorValorTotal = (a: AcaoProps, b: AcaoProps) => {
   }
   return 0
 }
+
+export const compararPorDataAtualizacao = (a: AcaoProps, b: AcaoProps) => {
+  const dataA = new Date(a.data_atualizacao)
+  const dataB = new Date(b.data_atualizacao)
+
+  if (dataA < dataB) {
+    return -1
+  }
+  if (dataA > dataB) {
+    return 1
+  }
+  return 0
+}
+
 export   const formataData = (data_acao: string) => {
   const data = new Date(data_acao)
   const dataFormatada = data.toLocaleDateString("pt-BR")
