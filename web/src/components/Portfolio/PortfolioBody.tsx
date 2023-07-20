@@ -13,7 +13,7 @@ import {
 } from "../../utils"
 import StockCard from "./StockCard"
 import AddInstitutionModal from "./AddInstitutionModal"
-import { House } from "@phosphor-icons/react"
+import { DotsThreeOutlineVertical, House } from "@phosphor-icons/react"
 
 const LazyAddStockModal = lazy(() => import("./AddStockModal"))
 
@@ -21,18 +21,19 @@ const PortfolioBody = () => {
   const [acoes, setAcoes] = useState<AcaoProps[]>([])
   const [open1, setOpen1] = useState(false)
   const [open2, setOpen2] = useState(false)
+  const [open3, setOpen3] = useState(false)
 
   const evoPatrimonio = () => {
-    let count = 0
-    const arr: number[] = []
+    let acumulado = 0
+    const historico: number[] = []
     acoes
       .slice()
       .sort(compararPorDataAtualizacao)
       .map((acao) => {
-        count += acao.valor_total
-        arr.push(count)
+        acumulado += acao.valor_total
+        historico.push(acumulado)
       })
-    return arr
+    return historico
   }
 
   useEffect(() => {
@@ -115,14 +116,12 @@ const PortfolioBody = () => {
   return (
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
-        <div className="bg-[#01141f] w-full h-[15%] flex flex-row justify-between items-center p-4 shadow-md">
+        <div className="bg-[#01141f] w-full h-[15%] flex flex-row justify-between items-center p-4 shadow-lg shadow-black/20">
           <div className="flex items-center">
             <span className="text-[#eff3f6] text-[2.5rem] h-fit pr-6 border-r-2">
               ManFin Wallet
             </span>
-            <span className="text-[#eff3f6] ml-6 text-[2.5rem]">
-              Portfolio
-            </span>
+            <span className="text-[#eff3f6] ml-6 text-[2.5rem]">Portfólio</span>
           </div>
           <div className="text-[#eff3f6] text-[1.5rem] h-fit uppercase flex flex-row gap-2">
             <span>Total Investido:</span>
@@ -144,7 +143,10 @@ const PortfolioBody = () => {
               </div>
               <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#01141f]">
                 <Dialog.Root open={open1} onOpenChange={setOpen1}>
-                  <Dialog.Trigger className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase">
+                  <Dialog.Trigger
+                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase"
+                    title="Cadastro de uma nova instituição"
+                  >
                     Adicionar nova instituição
                   </Dialog.Trigger>
 
@@ -152,8 +154,11 @@ const PortfolioBody = () => {
                 </Dialog.Root>
 
                 <Dialog.Root open={open2} onOpenChange={setOpen2}>
-                  <Dialog.Trigger className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase rounded-b-lg">
-                    Adicionar nova aplicação
+                  <Dialog.Trigger
+                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase rounded-b-lg"
+                    title="Cadastro de um novo ativo"
+                  >
+                    Adicionar novo ativo
                   </Dialog.Trigger>
 
                   {open2 && (
@@ -161,6 +166,21 @@ const PortfolioBody = () => {
                       <LazyAddStockModal />
                     </Suspense>
                   )}
+                </Dialog.Root>
+
+                <Dialog.Root open={open3} onOpenChange={setOpen3}>
+                  <Dialog.Trigger
+                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase rounded-b-lg"
+                    title="Nova aplicação de um ativo existente"
+                  >
+                    Adicionar nova aplicação
+                  </Dialog.Trigger>
+
+                  {/* {open2 && (
+                    <Suspense>
+                      <LazyAddStockModal />
+                    </Suspense>
+                  )} */}
                 </Dialog.Root>
               </div>
             </div>
@@ -215,7 +235,7 @@ const PortfolioBody = () => {
                 height={300}
               />
             </div>
-            <div className="flex flex-col h-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7">
+            <div className="flex flex-col h-fit w-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7 self-center">
               <span className="uppercase text-xl text-[#01141f] font-bold">
                 Distribuição por Instituição
               </span>
@@ -229,9 +249,15 @@ const PortfolioBody = () => {
             </div>
           </div>
         </div>
+        <div
+          className="bg-[#01141f] absolute bottom-2 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
+          title="Exibir opções"
+        >
+          <DotsThreeOutlineVertical size={20} color="white" weight="fill" />
+        </div>
         <Link
           to="/"
-          className="bg-[#01141f] absolute bottom-2 right-4 p-3 rounded-[50%] hover:bg-[#012234]"
+          className="bg-[#01141f] absolute bottom-16 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
           title="Ir para a Home"
         >
           <House size={20} color="white" weight="fill" />
