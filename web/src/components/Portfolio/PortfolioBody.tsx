@@ -1,6 +1,7 @@
 import { Suspense, useEffect, useState, lazy } from "react"
 import axios from "axios"
 import * as Dialog from "@radix-ui/react-dialog"
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import { Link } from "react-router-dom"
 import Chart from "react-apexcharts"
 import { AcaoProps } from "../../types"
@@ -135,56 +136,6 @@ const PortfolioBody = () => {
         </div>
         <div className="flex flex-col gap-1 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] pb-32">
           <div className="w-full h-[75%] flex flex-row p-6 gap-6">
-            <div className="flex flex-col w-[25%] h-full justify-center rounded-lg">
-              <div className="bg-[#01141f] p-5 flex justify-center rounded-t-lg">
-                <p className="uppercase text-xl text-white">
-                  Operações disponíveis
-                </p>
-              </div>
-              <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#01141f]">
-                <Dialog.Root open={open1} onOpenChange={setOpen1}>
-                  <Dialog.Trigger
-                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase"
-                    title="Cadastro de uma nova instituição"
-                  >
-                    Adicionar nova instituição
-                  </Dialog.Trigger>
-
-                  <AddInstitutionModal />
-                </Dialog.Root>
-
-                <Dialog.Root open={open2} onOpenChange={setOpen2}>
-                  <Dialog.Trigger
-                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase rounded-b-lg"
-                    title="Cadastro de um novo ativo"
-                  >
-                    Adicionar novo ativo
-                  </Dialog.Trigger>
-
-                  {open2 && (
-                    <Suspense>
-                      <LazyAddStockModal />
-                    </Suspense>
-                  )}
-                </Dialog.Root>
-
-                <Dialog.Root open={open3} onOpenChange={setOpen3}>
-                  <Dialog.Trigger
-                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase rounded-b-lg"
-                    title="Nova aplicação de um ativo existente"
-                  >
-                    Adicionar nova aplicação
-                  </Dialog.Trigger>
-
-                  {/* {open2 && (
-                    <Suspense>
-                      <LazyAddStockModal />
-                    </Suspense>
-                  )} */}
-                </Dialog.Root>
-              </div>
-            </div>
-
             <div className="w-full h-full flex flex-col justify-center">
               <div className="bg-[#01141f] p-5 rounded-t-lg flex justify-center">
                 <p className="uppercase text-xl text-white">
@@ -224,7 +175,7 @@ const PortfolioBody = () => {
                 height={300}
               />
             </div>
-            <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5">
+            <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5 z-0">
               <span className="uppercase text-xl text-[#01141f] font-bold">
                 Evolução do Patrimônio
               </span>
@@ -235,7 +186,7 @@ const PortfolioBody = () => {
                 height={300}
               />
             </div>
-            <div className="flex flex-col h-fit w-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7 self-center">
+            <div className="flex flex-col h-fit w-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7 self-center z-0">
               <span className="uppercase text-xl text-[#01141f] font-bold">
                 Distribuição por Instituição
               </span>
@@ -249,12 +200,68 @@ const PortfolioBody = () => {
             </div>
           </div>
         </div>
-        <div
-          className="bg-[#01141f] absolute bottom-2 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
-          title="Exibir opções"
-        >
-          <DotsThreeOutlineVertical size={20} color="white" weight="fill" />
-        </div>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger
+            className="bg-[#01141f] absolute bottom-2 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
+            title="Exibir opções"
+          >
+            <DotsThreeOutlineVertical size={20} color="white" weight="fill" />
+          </DropdownMenu.Trigger>
+
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content
+              side="left"
+              sideOffset={10}
+              className="bg-gray-300 rounded-lg mb-2 border-[#01141f] border-2"
+            >
+              <div className="bg-[#01141f] p-5 flex justify-center">
+                <p className="uppercase text-white text-base">
+                  Operações disponíveis
+                </p>
+              </div>
+              <DropdownMenu.Item>
+                <div className="bg-gray-300 rounded-lg divide-y-[1px] divide-[#01141f]">
+                  <Dialog.Root open={open1} onOpenChange={setOpen1}>
+                    <Dialog.Trigger
+                      className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                      title="Cadastro de uma nova instituição"
+                    >
+                      Adicionar nova instituição
+                    </Dialog.Trigger>
+
+                    <AddInstitutionModal />
+                  </Dialog.Root>
+
+                  <Dialog.Root open={open2} onOpenChange={setOpen2}>
+                    <Dialog.Trigger
+                      className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                      title="Cadastro de um novo ativo"
+                    >
+                      Adicionar novo ativo
+                    </Dialog.Trigger>
+
+                    {open2 && (
+                      <Suspense>
+                        <LazyAddStockModal />
+                      </Suspense>
+                    )}
+                  </Dialog.Root>
+
+                  <Dialog.Root open={open3} onOpenChange={setOpen3}>
+                    <Dialog.Trigger
+                      className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm rounded-b-lg"
+                      title="Nova aplicação de um ativo existente"
+                    >
+                      Adicionar nova aplicação
+                    </Dialog.Trigger>
+                  </Dialog.Root>
+                </div>
+              </DropdownMenu.Item>
+              <DropdownMenu.Arrow />
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
+
         <Link
           to="/"
           className="bg-[#01141f] absolute bottom-16 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
