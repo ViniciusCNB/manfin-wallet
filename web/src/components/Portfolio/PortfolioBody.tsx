@@ -7,14 +7,13 @@ import Chart from "react-apexcharts"
 import { AcaoProps } from "../../types"
 import {
   compararPorDataAtualizacao,
-  compararPorValorTotal,
   contaInstituicao,
   fillData,
   totalSharesValue,
 } from "../../utils"
-import StockCard from "./StockCard"
 import AddInstitutionModal from "./AddInstitutionModal"
 import { DotsThreeOutlineVertical, House } from "@phosphor-icons/react"
+import ApplicationsTable from "./ApplicationsTable"
 
 const LazyAddStockModal = lazy(() => import("./AddStockModal"))
 
@@ -185,35 +184,10 @@ const PortfolioBody = () => {
                 </Dialog.Root>
               </div>
             </div>
-
-            <div className="w-full h-full flex flex-col justify-center">
-              <div className="bg-[#01141f] p-5 rounded-t-lg flex justify-center">
-                <p className="uppercase text-xl text-white">
-                  Aplicações Cadastradas
-                </p>
-              </div>
-              <div className="bg-gray-300 h-96 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] divide-y-[1px] divide-gray-800 rounded-b-lg">
-                {acoes
-                  .slice()
-                  .sort(compararPorValorTotal)
-                  .map((acao) => {
-                    return (
-                      <StockCard
-                        key={acao.codigo}
-                        codigo={acao.codigo}
-                        data_atualizacao={acao.data_atualizacao}
-                        instituicao={acao.instituicao}
-                        preco={acao.preco}
-                        quantidade={acao.quantidade}
-                        valor_total={acao.valor_total}
-                      />
-                    )
-                  })}
-              </div>
-            </div>
+            <ApplicationsTable acoes={acoes} />
           </div>
           <div className="grid grid-cols-2 gap-10 justify-start w-full h-fit p-6">
-            <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5">
+            <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5 shadow-black/25 shadow-inner">
               <span className="uppercase text-xl text-[#01141f] font-bold">
                 Distribuição dos Ativos
               </span>
@@ -225,7 +199,7 @@ const PortfolioBody = () => {
                 height={300}
               />
             </div>
-            <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5 z-0">
+            <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5 z-0 shadow-inner shadow-black/25">
               <span className="uppercase text-xl text-[#01141f] font-bold">
                 Evolução do Patrimônio
               </span>
@@ -236,7 +210,7 @@ const PortfolioBody = () => {
                 height={300}
               />
             </div>
-            <div className="flex flex-col h-fit w-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7 self-center z-0">
+            <div className="flex flex-col h-fit w-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7 self-center z-0 shadow-inner shadow-black/25">
               <span className="uppercase text-xl text-[#01141f] font-bold">
                 Distribuição por Instituição
               </span>
