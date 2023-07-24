@@ -1,8 +1,9 @@
 import * as Dialog from "@radix-ui/react-dialog"
 import { useState } from "react"
 import DeleteStockModal from "./DeleteStockModal"
-import { Trash } from "@phosphor-icons/react"
+import { PlusCircle, Trash } from "@phosphor-icons/react"
 import { formataData } from "../../utils"
+import AddApplicationModal from "./AddApplicationModal"
 
 interface StockCardProps {
   codigo: string
@@ -14,7 +15,8 @@ interface StockCardProps {
 }
 
 const StockCard = (props: StockCardProps) => {
-  const [open, setOpen] = useState(false)
+  const [open1, setOpen1] = useState(false)
+  const [open2, setOpen2] = useState(false)
 
   return (
     <>
@@ -66,7 +68,17 @@ const StockCard = (props: StockCardProps) => {
           </div>
         </div>
         <div className="flex justify-center items-center my-2 px-4">
-          <Dialog.Root open={open} onOpenChange={setOpen}>
+          <Dialog.Root open={open1} onOpenChange={setOpen1}>
+            <Dialog.Trigger
+              className="hover:bg-gray-400 p-3 rounded-[50%]"
+              title="Nova Aplicação"
+            >
+              <PlusCircle size={25} weight="fill" />
+            </Dialog.Trigger>
+
+            <AddApplicationModal codigo={props.codigo} instituicao={props.instituicao} />
+          </Dialog.Root>
+          <Dialog.Root open={open2} onOpenChange={setOpen2}>
             <Dialog.Trigger
               className="hover:bg-gray-400 p-3 rounded-[50%]"
               title="Apagar Aplicação"
