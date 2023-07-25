@@ -21,7 +21,10 @@ const StockCard = (props: StockCardProps) => {
 
   return (
     <>
-      <Link to={`/portfolio/${props.codigo}`} className="flex flex-row divide-x-2 divide-[#01141f] hover:bg-gray-400/50">
+      <Link
+        to={`/portfolio/${props.codigo}`}
+        className="flex flex-row divide-x-2 divide-[#01141f] hover:bg-gray-400/50"
+      >
         <div className="w-full grid grid-cols-6 py-2 text-center divide-x-2 divide-[#01141f]">
           <div className="flex justify-center">
             <p>
@@ -68,7 +71,7 @@ const StockCard = (props: StockCardProps) => {
             </p>
           </div>
         </div>
-        <div className="flex justify-center items-center my-2 px-4">
+        {/* <div className="flex justify-center items-center my-2 px-4">
           <Dialog.Root open={open1} onOpenChange={setOpen1}>
             <Dialog.Trigger
               className="hover:bg-gray-400 p-3 rounded-[50%]"
@@ -77,7 +80,10 @@ const StockCard = (props: StockCardProps) => {
               <PlusCircle size={25} weight="fill" />
             </Dialog.Trigger>
 
-            <AddApplicationModal codigo={props.codigo} instituicao={props.instituicao} />
+            <AddApplicationModal
+              codigo={props.codigo}
+              instituicao={props.instituicao}
+            />
           </Dialog.Root>
           <Dialog.Root open={open2} onOpenChange={setOpen2}>
             <Dialog.Trigger
@@ -89,7 +95,7 @@ const StockCard = (props: StockCardProps) => {
 
             <DeleteStockModal codigo={props.codigo} />
           </Dialog.Root>
-        </div>
+        </div> */}
       </Link>
     </>
   )

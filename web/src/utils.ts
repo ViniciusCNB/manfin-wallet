@@ -62,7 +62,7 @@ export const compararPorDataAtualizacao = (a: AcaoProps, b: AcaoProps) => {
   return 0
 }
 
-export   const formataData = (data_acao: string) => {
+export const formataData = (data_acao: string) => {
   const data = new Date(data_acao)
   const dataFormatada = data.toLocaleDateString("pt-BR")
   return dataFormatada
