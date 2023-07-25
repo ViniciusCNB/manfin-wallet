@@ -9,11 +9,11 @@ import {
   compararPorDataAtualizacao,
   contaInstituicao,
   fillData,
-  totalSharesValue,
 } from "../../utils"
 import AddInstitutionModal from "./AddInstitutionModal"
 import { DotsThreeOutlineVertical, House } from "@phosphor-icons/react"
 import ApplicationsTable from "./ApplicationsTable"
+import PortfolioMenu from "./PortfolioMenu"
 
 const LazyAddStockModal = lazy(() => import("./AddStockModal"))
 
@@ -116,23 +116,7 @@ const PortfolioBody = () => {
   return (
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
-        <div className="bg-[#01141f] w-full h-[15%] flex flex-row justify-between items-center p-4 shadow-lg shadow-black/20">
-          <div className="flex items-center">
-            <span className="text-[#eff3f6] text-[2.5rem] h-fit pr-6 border-r-2">
-              ManFin Wallet
-            </span>
-            <span className="text-[#eff3f6] ml-6 text-[2.5rem]">Portfólio</span>
-          </div>
-          <div className="text-[#eff3f6] text-[1.5rem] h-fit uppercase flex flex-row gap-2">
-            <span>Total Investido:</span>
-            <span>
-              R${" "}
-              {totalSharesValue(acoes).toLocaleString("pt-BR", {
-                minimumFractionDigits: 2,
-              })}
-            </span>
-          </div>
-        </div>
+        <PortfolioMenu acoes={acoes} />
         <div className="flex flex-col gap-1 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] pb-32">
           <div className="w-full h-[75%] flex flex-row p-6 gap-6">
             <div className="flex-col w-[25%] h-full justify-center rounded-lg hidden">
