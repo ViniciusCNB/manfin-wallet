@@ -216,7 +216,7 @@ const PortfolioBody = () => {
         </div> */}
         <DropdownMenu.Root>
           <DropdownMenu.Trigger
-            className="bg-[#01141f] absolute bottom-2 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
+            className="bg-[#01141f] absolute bottom-16 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
             title="Exibir opções"
           >
             <DotsThreeOutlineVertical size={20} color="white" weight="fill" />
@@ -281,7 +281,7 @@ const PortfolioBody = () => {
         </DropdownMenu.Root>
         <Link
           to="/"
-          className="bg-[#01141f] absolute bottom-16 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
+          className="bg-[#01141f] absolute bottom-2 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
           title="Ir para a Home"
         >
           <House size={20} color="white" weight="fill" />
