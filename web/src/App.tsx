@@ -3,6 +3,7 @@ import "./styles/main.css"
 import HomePage from "./pages/HomePage"
 import NotFoundPage from "./pages/NotFoundPage"
 import PortfolioPage from "./pages/PortfolioPage"
+import ApplicationPage from "./pages/ApplicationPage"
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/portfolio",
     element: <PortfolioPage />
+  },
+  {
+    path: "/portfolio/:codigo",
+    element: <ApplicationPage />
   }
 ])
 

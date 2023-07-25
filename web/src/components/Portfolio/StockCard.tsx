@@ -4,6 +4,7 @@ import DeleteStockModal from "./DeleteStockModal"
 import { PlusCircle, Trash } from "@phosphor-icons/react"
 import { formataData } from "../../utils"
 import AddApplicationModal from "./AddApplicationModal"
+import { Link } from "react-router-dom"
 
 interface StockCardProps {
   codigo: string
@@ -20,7 +21,7 @@ const StockCard = (props: StockCardProps) => {
 
   return (
     <>
-      <div className="flex flex-row divide-x-2 divide-[#01141f]">
+      <Link to={`/portfolio/${props.codigo}`} className="flex flex-row divide-x-2 divide-[#01141f] hover:bg-gray-400/50">
         <div className="w-full grid grid-cols-6 py-2 text-center divide-x-2 divide-[#01141f]">
           <div className="flex justify-center">
             <p>
@@ -89,7 +90,7 @@ const StockCard = (props: StockCardProps) => {
             <DeleteStockModal codigo={props.codigo} />
           </Dialog.Root>
         </div>
-      </div>
+      </Link>
     </>
   )
 }
