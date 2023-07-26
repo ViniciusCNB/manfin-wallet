@@ -6,8 +6,8 @@ import { formataData } from "../../utils"
 import { ChartBarHorizontal, DotsThreeOutlineVertical, House, PlusCircle, Trash } from "@phosphor-icons/react"
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import * as Dialog from "@radix-ui/react-dialog"
-import AddApplicationModal from "../Portfolio/AddApplicationModal"
-import DeleteStockModal from "../Portfolio/DeleteStockModal"
+import AddApplicationModal from "./AddApplicationModal"
+import DeleteStockModal from "./DeleteStockModal"
 
 const ApplicationBody = () => {
   const { codigo } = useParams()
