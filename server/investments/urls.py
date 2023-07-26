@@ -9,4 +9,5 @@ router.register('historico-acao', HistoricoAcaoViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('historico-acao/<str:codigo>/historico/', HistoricoAcaoViewSet.as_view({'get': 'get_historico_acao'}), name='historico-por-codigo')
 ]
