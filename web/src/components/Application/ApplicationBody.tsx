@@ -3,11 +3,18 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { AcaoProps } from "../../types"
 import { formataData } from "../../utils"
-import { ChartBarHorizontal, House } from "@phosphor-icons/react"
+import { ChartBarHorizontal, DotsThreeOutlineVertical, House, PlusCircle, Trash } from "@phosphor-icons/react"
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
+import * as Dialog from "@radix-ui/react-dialog"
+import AddApplicationModal from "../Portfolio/AddApplicationModal"
+import DeleteStockModal from "../Portfolio/DeleteStockModal"
 
 const ApplicationBody = () => {
   const { codigo } = useParams()
   const [acao, setAcao] = useState<AcaoProps>()
+  const [open1, setOpen1] = useState(false)
+  const [open2, setOpen2] = useState(false)
+
 
   useEffect(() => {
     axios
@@ -16,7 +23,6 @@ const ApplicationBody = () => {
       .then((data) => setAcao(data))
   }, [codigo])
 
-  console.log(acao)
   return (
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col p-2 gap-2 relative">
@@ -51,6 +57,60 @@ const ApplicationBody = () => {
             <h1>Teste</h1>
           </div>
         </div>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger
+            className="bg-[#01141f] absolute bottom-[120px] right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
+            title="Exibir opções"
+          >
+            <DotsThreeOutlineVertical size={20} color="white" weight="fill" />
+          </DropdownMenu.Trigger>
+
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content
+              side="left"
+              sideOffset={10}
+              className="bg-gray-300 rounded-lg mb-2 border-[#01141f] border-2"
+            >
+              <DropdownMenu.Label className="bg-[#01141f] p-5 flex justify-center">
+                <p className="uppercase text-white text-base">
+                  Operações disponíveis
+                </p>
+              </DropdownMenu.Label>
+
+              <DropdownMenu.Item>
+              <Dialog.Root open={open1} onOpenChange={setOpen1}>
+                <Dialog.Trigger
+                  className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase"
+                  title="Nova Aplicação"
+                >
+                    Nova Aplicação
+                  </Dialog.Trigger>
+
+                  <AddApplicationModal
+                    codigo={acao != undefined ? acao.codigo : ""}
+                    instituicao={acao != undefined ? acao.instituicao : ""}
+                  />
+                </Dialog.Root>
+
+              </DropdownMenu.Item>
+              <DropdownMenu.Separator className="bg-[#01141f] h-[1px]" />
+              <DropdownMenu.Item>
+                <Dialog.Root open={open2} onOpenChange={setOpen2}>
+                  <Dialog.Trigger
+                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase"
+                    title="Apagar Aplicação"
+                  >
+                    Apagar Aplicação
+                  </Dialog.Trigger>
+
+                  <DeleteStockModal codigo={acao != undefined ? acao.codigo : ""} />
+                </Dialog.Root>
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Arrow />
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
         <Link
           to="/portfolio"
           className="bg-[#01141f] absolute bottom-16 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
@@ -66,6 +126,31 @@ const ApplicationBody = () => {
           <House size={20} color="white" weight="fill" />
         </Link>
       </div>
+      <div className="justify-center items-center my-2 px-4 hidden">
+          <Dialog.Root open={open1} onOpenChange={setOpen1}>
+            <Dialog.Trigger
+              className="hover:bg-gray-400 p-3 rounded-[50%]"
+              title="Nova Aplicação"
+            >
+              <PlusCircle size={25} weight="fill" />
+            </Dialog.Trigger>
+
+            <AddApplicationModal
+              codigo={acao != undefined ? acao.codigo : ""}
+              instituicao={acao != undefined ? acao.instituicao : ""}
+            />
+          </Dialog.Root>
+          <Dialog.Root open={open2} onOpenChange={setOpen2}>
+            <Dialog.Trigger
+              className="hover:bg-gray-400 p-3 rounded-[50%]"
+              title="Apagar Aplicação"
+            >
+              <Trash size={20} weight="bold" />
+            </Dialog.Trigger>
+
+            <DeleteStockModal codigo={acao != undefined ? acao.codigo : ""} />
+          </Dialog.Root>
+        </div>
     </>
   )
 }

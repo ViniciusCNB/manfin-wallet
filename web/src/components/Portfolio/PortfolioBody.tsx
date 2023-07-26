@@ -21,7 +21,6 @@ const PortfolioBody = () => {
   const [acoes, setAcoes] = useState<AcaoProps[]>([])
   const [open1, setOpen1] = useState(false)
   const [open2, setOpen2] = useState(false)
-  const [open3, setOpen3] = useState(false)
 
   const evoPatrimonio = () => {
     let acumulado = 0
@@ -151,21 +150,6 @@ const PortfolioBody = () => {
                     </Suspense>
                   )}
                 </Dialog.Root>
-
-                <Dialog.Root open={open3} onOpenChange={setOpen3}>
-                  <Dialog.Trigger
-                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase rounded-b-lg"
-                    title="Nova aplicação de um ativo existente"
-                  >
-                    Adicionar nova aplicação
-                  </Dialog.Trigger>
-
-                  {/* {open2 && (
-                    <Suspense>
-                      <LazyAddStockModal />
-                    </Suspense>
-                  )} */}
-                </Dialog.Root>
               </div>
             </div>
             <ApplicationsTable acoes={acoes} />
@@ -261,17 +245,6 @@ const PortfolioBody = () => {
                       <LazyAddStockModal />
                     </Suspense>
                   )}
-                </Dialog.Root>
-              </DropdownMenu.Item>
-              <DropdownMenu.Separator className="bg-[#01141f] h-[1px]" />
-              <DropdownMenu.Item>
-                <Dialog.Root open={open3} onOpenChange={setOpen3}>
-                  <Dialog.Trigger
-                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm rounded-b-lg"
-                    title="Nova aplicação de um ativo existente"
-                  >
-                    Adicionar nova aplicação
-                  </Dialog.Trigger>
                 </Dialog.Root>
               </DropdownMenu.Item>
 
