@@ -39,7 +39,7 @@ const StockCard = (props: StockCardProps) => {
           </div>
           <div className="flex justify-center">
             <p>
-              <span className="font-bold text-[#01141f]">Preço</span> <br /> R${" "}
+              <span className="font-bold text-[#01141f]">Preço Médio</span> <br /> R${" "}
               {props.preco.toLocaleString("pt-BR", {
                 minimumFractionDigits: 2,
               })}

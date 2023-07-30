@@ -35,7 +35,7 @@ const ApplicationBody = () => {
               <p>ATIVO</p>
               <p>DATA ÚLTIMA APLICAÇÃO</p>
               <p>INSTITUIÇÃO</p>
-              <p>PREÇO</p>
+              <p>PREÇO MÉDIO</p>
               <p>QUANTIDADE</p>
               <p>VALOR TOTAL</p>
             </div>

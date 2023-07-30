@@ -8,11 +8,18 @@ import { Plus } from "@phosphor-icons/react"
 const AddStockModal = () => {
   const [instituicoes, setInstituicoes] = useState([])
   const { register, handleSubmit, reset } = useForm()
+  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit = async (data: any) => {
+    const editData = {
+      ...data,
+      codigo: data["codigo"].toUpperCase() ,
+      preco: data["preco"].replace(/,/g, ".")
+    }
 
-  const onSubmit = async (data: unknown) => {
     try {
       await axios
-        .post("http://127.0.0.1:8000/acao/", data)
+        .post("http://127.0.0.1:8000/acao/", editData)
         .then((response) => response.data)
         .then((data) =>
           alert(`Ação ${data.codigo} adicionada com sucesso.`)
@@ -88,7 +95,7 @@ const AddStockModal = () => {
             <div className="flex flex-col gap-2">
               <div className="flex flex-col mb-5">
                 <label htmlFor="" className="font-bold text-[16px]">
-                  PREÇO UNITÁRIO
+                  PREÇO MÉDIO
                 </label>
                 <input
                   type="text"
