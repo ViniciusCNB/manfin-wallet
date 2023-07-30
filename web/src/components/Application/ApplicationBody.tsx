@@ -33,7 +33,7 @@ const ApplicationBody = () => {
           <div className="bg-gray-300 grid grid-cols-2 rounded-lg p-3 shadow-inner shadow-black/25">
             <div className="font-bold">
               <p>ATIVO</p>
-              <p>DATA ÚLTIMA APLICAÇÃO</p>
+              <p>DATA PRIMEIRA APLICAÇÃO</p>
               <p>INSTITUIÇÃO</p>
               <p>PREÇO MÉDIO</p>
               <p>QUANTIDADE</p>
@@ -45,9 +45,23 @@ const ApplicationBody = () => {
                 {acao != undefined ? formataData(acao.data_atualizacao) : ""}
               </p>
               <p>{acao?.instituicao}</p>
-              <p>{acao?.preco}</p>
+              <p>
+                {" "}
+                R$
+                {" "}
+                {acao?.preco.toLocaleString("pt-BR", {
+                  minimumFractionDigits: 2,
+                })}
+              </p>
               <p>{acao?.quantidade}</p>
-              <p>{acao?.valor_total}</p>
+              <p>
+                {" "}
+                R$
+                {" "}
+                {acao?.valor_total.toLocaleString("pt-BR", {
+                  minimumFractionDigits: 2,
+                })}
+              </p>
             </div>
           </div>
           <div className="bg-gray-300 rounded-lg p-3 shadow-inner shadow-black/25">
@@ -78,11 +92,11 @@ const ApplicationBody = () => {
               </DropdownMenu.Label>
 
               <DropdownMenu.Item>
-              <Dialog.Root open={open1} onOpenChange={setOpen1}>
-                <Dialog.Trigger
-                  className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase"
-                  title="Nova Aplicação"
-                >
+                <Dialog.Root open={open1} onOpenChange={setOpen1}>
+                  <Dialog.Trigger
+                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase"
+                    title="Nova Aplicação"
+                  >
                     Nova Aplicação
                   </Dialog.Trigger>
 
@@ -91,7 +105,6 @@ const ApplicationBody = () => {
                     instituicao={acao != undefined ? acao.instituicao : ""}
                   />
                 </Dialog.Root>
-
               </DropdownMenu.Item>
               <DropdownMenu.Separator className="bg-[#01141f] h-[1px]" />
               <DropdownMenu.Item>
@@ -103,7 +116,9 @@ const ApplicationBody = () => {
                     Apagar Aplicação
                   </Dialog.Trigger>
 
-                  <DeleteStockModal codigo={acao != undefined ? acao.codigo : ""} />
+                  <DeleteStockModal
+                    codigo={acao != undefined ? acao.codigo : ""}
+                  />
                 </Dialog.Root>
               </DropdownMenu.Item>
 
@@ -127,30 +142,30 @@ const ApplicationBody = () => {
         </Link>
       </div>
       <div className="justify-center items-center my-2 px-4 hidden">
-          <Dialog.Root open={open1} onOpenChange={setOpen1}>
-            <Dialog.Trigger
-              className="hover:bg-gray-400 p-3 rounded-[50%]"
-              title="Nova Aplicação"
-            >
-              <PlusCircle size={25} weight="fill" />
-            </Dialog.Trigger>
+        <Dialog.Root open={open1} onOpenChange={setOpen1}>
+          <Dialog.Trigger
+            className="hover:bg-gray-400 p-3 rounded-[50%]"
+            title="Nova Aplicação"
+          >
+            <PlusCircle size={25} weight="fill" />
+          </Dialog.Trigger>
 
-            <AddApplicationModal
-              codigo={acao != undefined ? acao.codigo : ""}
-              instituicao={acao != undefined ? acao.instituicao : ""}
-            />
-          </Dialog.Root>
-          <Dialog.Root open={open2} onOpenChange={setOpen2}>
-            <Dialog.Trigger
-              className="hover:bg-gray-400 p-3 rounded-[50%]"
-              title="Apagar Aplicação"
-            >
-              <Trash size={20} weight="bold" />
-            </Dialog.Trigger>
+          <AddApplicationModal
+            codigo={acao != undefined ? acao.codigo : ""}
+            instituicao={acao != undefined ? acao.instituicao : ""}
+          />
+        </Dialog.Root>
+        <Dialog.Root open={open2} onOpenChange={setOpen2}>
+          <Dialog.Trigger
+            className="hover:bg-gray-400 p-3 rounded-[50%]"
+            title="Apagar Aplicação"
+          >
+            <Trash size={20} weight="bold" />
+          </Dialog.Trigger>
 
-            <DeleteStockModal codigo={acao != undefined ? acao.codigo : ""} />
-          </Dialog.Root>
-        </div>
+          <DeleteStockModal codigo={acao != undefined ? acao.codigo : ""} />
+        </Dialog.Root>
+      </div>
     </>
   )
 }
