@@ -1,4 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 
 interface DeleteStockModalProps {
@@ -6,9 +7,12 @@ interface DeleteStockModalProps {
 }
 
 const DeleteStockModal = (props: DeleteStockModalProps) => {
+  const navigate = useNavigate()
+
   const handleClick = async () => {
     await axios
       .delete(`http://localhost:8000/acao/${props.codigo}`)
+      .then(() => navigate("/portfolio"))
       .then(() => window.location.reload())
   }
 
