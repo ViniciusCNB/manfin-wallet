@@ -11,6 +11,8 @@ import AddExpenseModal from "./AddExpenseModal"
 import ExpensesMenu from "./ExpensesMenu"
 import axios from "axios"
 import { DespesaProps } from "../../types"
+import ExpensesTable from "./ExpensesTable"
+import { compararPorDataAtualizacao_despesa } from "../../utils"
 
 const ExpensesBody = () => {
   const [open, setOpen] = useState(false)
@@ -28,8 +30,10 @@ const ExpensesBody = () => {
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
         <ExpensesMenu despesas={despesas} />
-        <div className="flex flex-col gap-10 overflow-auto scrollbar-thin scrollbar-thumb-[#187c44] p-6">
-          <div></div>
+        <div className="flex flex-col gap-10 h-full overflow-auto scrollbar-thin scrollbar-thumb-[#187c44] p-6">
+          <div className="bg-gray-300 flex flex-col w-1/2 h-full rounded-lg">
+            <ExpensesTable despesas={despesas.sort(compararPorDataAtualizacao_despesa)} />
+          </div>
         </div>
         <div className="flex-col w-[25%] h-full justify-center rounded-lg hidden">
           <div className="bg-[#187c44] p-5 flex justify-center rounded-t-lg">

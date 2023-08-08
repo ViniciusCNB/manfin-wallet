@@ -11,6 +11,14 @@ export const totalSharesValue = (acoes: AcaoProps[]) => {
   return soma
 }
 
+export const totalExpensesValue = (despesas: DespesaProps[]) => {
+  let soma = 0
+  despesas.map((despesa) => {
+    soma += despesa.valor
+  })
+  return soma
+}
+
 export const fillData = (acoes: AcaoProps[], data_inst: string[]) => {
   acoes.map((acao: AcaoProps) => {
     data_inst.push(acao.instituicao)
@@ -62,20 +70,24 @@ export const compararPorDataAtualizacao = (a: AcaoProps, b: AcaoProps) => {
   return 0
 }
 
+export const compararPorDataAtualizacao_despesa = (a: DespesaProps, b: DespesaProps) => {
+  const dataA = new Date(a.data)
+  const dataB = new Date(b.data)
+
+  if (dataA > dataB) {
+    return -1
+  }
+  if (dataA < dataB) {
+    return 1
+  }
+  return 0
+}
+
 export const formataData = (data_acao: string) => {
   const data = new Date(data_acao)
   const dataFormatada = data.toLocaleDateString("pt-BR")
   return dataFormatada
 }
-
-export const totalExpensesValue = (despesas: DespesaProps[]) => {
-  let soma = 0
-  despesas.map((despesa) => {
-    soma += despesa.valor
-  })
-  return soma
-}
-
 
 // CONFIGURAÇÃO DOS GRÁFICOS
 
