@@ -1,4 +1,11 @@
-const ExpensesMenu = () => {
+import { DespesaProps } from "../../types"
+import { totalExpensesValue } from "../../utils"
+
+interface ExepensesMenuProps {
+  despesas: DespesaProps[]
+}
+
+const ExpensesMenu = (props: ExepensesMenuProps) => {
   return (
     <>
       <div className="bg-[#187c44] w-full h-[13%] flex flex-row justify-between items-center p-4 shadow-lg shadow-black/20">
@@ -12,9 +19,9 @@ const ExpensesMenu = () => {
           <span>Total Gasto:</span>
           <span>
             R${" "}
-            {/* {totalSharesValue(props.acoes).toLocaleString("pt-BR", {
+            {totalExpensesValue(props.despesas).toLocaleString("pt-BR", {
               minimumFractionDigits: 2,
-            })} */}
+            })}
           </span>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   ChartBarHorizontal,
   DotsThreeOutlineVertical,
@@ -9,13 +9,28 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import * as Dialog from "@radix-ui/react-dialog"
 import AddExpenseModal from "./AddExpenseModal"
 import ExpensesMenu from "./ExpensesMenu"
+import axios from "axios"
+import { DespesaProps } from "../../types"
 
 const ExpensesBody = () => {
   const [open, setOpen] = useState(false)
+  const [despesas, setDespesas] = useState<DespesaProps[]>([])
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/despesa/")
+      .then((response) => response.data)
+      .then((data) => setDespesas(data))
+  }, [])
+
+  console.log(despesas)
   return (
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
-        <ExpensesMenu />
+        <ExpensesMenu despesas={despesas} />
+        <div className="flex flex-col gap-10 overflow-auto scrollbar-thin scrollbar-thumb-[#187c44] p-6">
+          <div></div>
+        </div>
         <div className="flex-col w-[25%] h-full justify-center rounded-lg hidden">
           <div className="bg-[#187c44] p-5 flex justify-center rounded-t-lg">
             <p className="uppercase text-xl text-white">
