@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage"
 import NotFoundPage from "./pages/NotFoundPage"
 import PortfolioPage from "./pages/PortfolioPage"
 import ApplicationPage from "./pages/ApplicationPage"
+import ExpensesPage from "./pages/ExpensesPage"
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/portfolio/:codigo",
     element: <ApplicationPage />
+  },
+  {
+    path: "/despesas",
+    element: <ExpensesPage />
   }
 ])
 
