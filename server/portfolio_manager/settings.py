@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'corsheaders',
+    'expenses.apps.ExpensesConfig',
     'investments.apps.InvestmentsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
