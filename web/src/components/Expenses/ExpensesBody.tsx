@@ -15,22 +15,24 @@ const ExpensesBody = () => {
   return (
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
-        <div className="bg-[#187c44] w-full h-[15%] flex flex-row justify-between items-center p-4 shadow-lg shadow-black/20">
-          <div className="flex items-center">
-            <span className="text-[#eff3f6] text-[2.5rem] h-fit pr-6 border-r-2">
-              ManFin Wallet
-            </span>
-            <span className="text-[#eff3f6] ml-6 text-[2.5rem]">Despesas</span>
         <ExpensesMenu />
+        <div className="flex-col w-[25%] h-full justify-center rounded-lg hidden">
+          <div className="bg-[#187c44] p-5 flex justify-center rounded-t-lg">
+            <p className="uppercase text-xl text-white">
+              Operações disponíveis
+            </p>
           </div>
-          <div className="text-[#eff3f6] text-[1.5rem] h-fit uppercase flex flex-row gap-2">
-            <span>Total Gasto:</span>
-            <span>
-              R${" "}
-              {/* {totalSharesValue(props.acoes).toLocaleString("pt-BR", {
-              minimumFractionDigits: 2,
-            })} */}
-            </span>
+          <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#187c44]">
+            <Dialog.Root open={open} onOpenChange={setOpen}>
+              <Dialog.Trigger
+                className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                title="Cadastro de uma nova instituição"
+              >
+                Adicionar nova despesa
+              </Dialog.Trigger>
+
+              <AddExpenseModal />
+            </Dialog.Root>
           </div>
         </div>
         <DropdownMenu.Root>
