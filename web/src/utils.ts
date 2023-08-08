@@ -1,4 +1,4 @@
-import { AcaoProps } from "./types"
+import { AcaoProps, DespesaProps } from "./types"
 
 
 // FUNÇÕES
@@ -66,6 +66,14 @@ export const formataData = (data_acao: string) => {
   const data = new Date(data_acao)
   const dataFormatada = data.toLocaleDateString("pt-BR")
   return dataFormatada
+}
+
+export const totalExpensesValue = (despesas: DespesaProps[]) => {
+  let soma = 0
+  despesas.map((despesa) => {
+    soma += despesa.valor
+  })
+  return soma
 }
 
 
