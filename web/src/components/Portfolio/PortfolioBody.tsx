@@ -11,7 +11,7 @@ import {
   fillData,
 } from "../../utils"
 import AddInstitutionModal from "./AddInstitutionModal"
-import { DotsThreeOutlineVertical, House } from "@phosphor-icons/react"
+import { DotsThreeOutlineVertical, House, Wallet } from "@phosphor-icons/react"
 import ApplicationsTable from "./ApplicationsTable"
 import PortfolioMenu from "./PortfolioMenu"
 
@@ -200,7 +200,7 @@ const PortfolioBody = () => {
         </div> */}
         <DropdownMenu.Root>
           <DropdownMenu.Trigger
-            className="bg-[#01141f] absolute bottom-16 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
+            className="bg-[#01141f] absolute bottom-[120px] right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
             title="Exibir opções"
           >
             <DotsThreeOutlineVertical size={20} color="white" weight="fill" />
@@ -252,6 +252,13 @@ const PortfolioBody = () => {
             </DropdownMenu.Content>
           </DropdownMenu.Portal>
         </DropdownMenu.Root>
+        <Link
+          to="/despesas"
+          className="bg-[#01141f] absolute bottom-16 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"
+          title="Ir para as Despesas"
+        >
+          <Wallet size={20} color="white" weight="fill" />
+        </Link>
         <Link
           to="/"
           className="bg-[#01141f] absolute bottom-2 right-4 p-3 rounded-[50%] hover:bg-[#012234] shadow-lg shadow-black/20"

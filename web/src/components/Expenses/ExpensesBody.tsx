@@ -1,5 +1,9 @@
 import { useState } from "react"
-import { DotsThreeOutlineVertical, House } from "@phosphor-icons/react"
+import {
+  ChartBarHorizontal,
+  DotsThreeOutlineVertical,
+  House,
+} from "@phosphor-icons/react"
 import { Link } from "react-router-dom"
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import * as Dialog from "@radix-ui/react-dialog"
@@ -29,7 +33,7 @@ const ExpensesBody = () => {
         </div>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger
-            className="bg-[#187c44] absolute bottom-16 right-4 p-3 rounded-[50%] hover:bg-[#255c3d] shadow-lg shadow-black/20"
+            className="bg-[#187c44] absolute bottom-[120px] right-4 p-3 rounded-[50%] hover:bg-[#255c3d] shadow-lg shadow-black/20"
             title="Exibir opções"
           >
             <DotsThreeOutlineVertical size={20} color="white" weight="fill" />
@@ -53,7 +57,7 @@ const ExpensesBody = () => {
                     className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
                     title="Cadastro de uma nova instituição"
                   >
-                    Adicionar nova instituição
+                    Adicionar nova despesa
                   </Dialog.Trigger>
 
                   <AddExpenseModal />
@@ -64,6 +68,13 @@ const ExpensesBody = () => {
             </DropdownMenu.Content>
           </DropdownMenu.Portal>
         </DropdownMenu.Root>
+        <Link
+          to="/portfolio"
+          className="bg-[#187c44] absolute bottom-16 right-4 p-3 rounded-[50%] hover:bg-[#255c3d] shadow-lg shadow-black/20"
+          title="Ir para o Portfólio"
+        >
+          <ChartBarHorizontal size={20} color="white" weight="fill" />
+        </Link>
         <Link
           to="/"
           className="bg-[#187c44] absolute bottom-2 right-4 p-3 rounded-[50%] hover:bg-[#255c3d] shadow-lg shadow-black/20"
