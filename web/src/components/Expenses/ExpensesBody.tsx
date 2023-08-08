@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import * as Dialog from "@radix-ui/react-dialog"
 import AddExpenseModal from "./AddExpenseModal"
+import ExpensesMenu from "./ExpensesMenu"
 
 const ExpensesBody = () => {
   const [open, setOpen] = useState(false)
@@ -20,6 +21,7 @@ const ExpensesBody = () => {
               ManFin Wallet
             </span>
             <span className="text-[#eff3f6] ml-6 text-[2.5rem]">Despesas</span>
+        <ExpensesMenu />
           </div>
           <div className="text-[#eff3f6] text-[1.5rem] h-fit uppercase flex flex-row gap-2">
             <span>Total Gasto:</span>
