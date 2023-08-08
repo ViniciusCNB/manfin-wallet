@@ -116,8 +116,8 @@ const PortfolioBody = () => {
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
         <PortfolioMenu acoes={acoes} />
-        <div className="flex flex-col gap-1 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] pb-32">
-          <div className="w-full h-[75%] flex flex-row p-6 gap-6">
+        <div className="flex flex-col gap-10 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] p-6">
+          <div className="w-full h-[75%] flex flex-row gap-6">
             <div className="flex-col w-[25%] h-full justify-center rounded-lg hidden">
               <div className="bg-[#01141f] p-5 flex justify-center rounded-t-lg">
                 <p className="uppercase text-xl text-white">
@@ -154,7 +154,7 @@ const PortfolioBody = () => {
             </div>
             <ApplicationsTable acoes={acoes} />
           </div>
-          <div className="grid grid-cols-2 gap-10 justify-start w-full h-fit p-6">
+          <div className="grid grid-cols-2 gap-10 justify-start w-full h-fit">
             <div className="flex flex-col text-center gap-10 bg-gray-300 rounded-lg py-5 shadow-black/25 shadow-inner">
               <span className="uppercase text-xl text-[#01141f] font-bold">
                 Distribuição dos Ativos
