@@ -40,7 +40,7 @@ const ExpenseCard = (props: ExpensesCardProps) => {
           </div>
           <div className="flex justify-center">
             <p>
-              <span className="font-bold text-[#187c44]">Pagamento</span>{" "}
+              <span className="font-bold text-[#187c44]">Forma de Pagamento</span>{" "}
               <br />
               {props.pagamento}
             </p>

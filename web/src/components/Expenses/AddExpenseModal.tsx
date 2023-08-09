@@ -10,8 +10,7 @@ const AddExpenseModal = () => {
   const onSubmit = async (data: any) => {
     const editData = {
       ...data,
-      codigo: data["codigo"].toUpperCase(),
-      preco: data["preco"].replace(/,/g, "."),
+      valor: data["valor"].replace(/,/g, "."),
     }
 
     try {
