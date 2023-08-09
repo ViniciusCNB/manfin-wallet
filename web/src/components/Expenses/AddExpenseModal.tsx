@@ -2,9 +2,11 @@ import * as Dialog from "@radix-ui/react-dialog"
 import axios from "axios"
 import { useForm } from "react-hook-form"
 import { Plus } from "@phosphor-icons/react"
+import { useEffect, useState } from "react"
 
 const AddExpenseModal = () => {
   const { register, handleSubmit, reset } = useForm()
+  const [categorias, setCategorias] = useState<{ descricao: string }[]>([])
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (data: any) => {
@@ -26,20 +28,48 @@ const AddExpenseModal = () => {
     }
   }
 
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/categoria/")
+      .then((response) => response.data)
+      .then((data) => setCategorias(data))
+  }, [])
+
   return (
     <>
       <Dialog.Portal>
         <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
 
-        <Dialog.Content className="fixed bg-[#bdbdbd]/90 py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[30rem] h-[36rem] shadow-lg shadow-black/25">
+        <Dialog.Content className="fixed bg-[#bdbdbd]/90 py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[30rem] h-[42rem] shadow-lg shadow-black/25">
           <Dialog.Title className="bg-[#187c44] rounded-lg uppercase py-4 text-2xl text-center font-extrabold mb-10 shadow-lg shadow-black/25">
             Adicionar Nova Despesa
           </Dialog.Title>
 
           <form onSubmit={handleSubmit(onSubmit)} className="relative">
-            <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2">
               <div className="flex flex-col mb-5">
                 <label htmlFor="" className="font-bold text-[16px] text-[#187c44] uppercase">
+                  CATEGORIA
+                </label>
+                <select
+                  {...register("categoria", { required: true })}
+                  className="bg-gray-200 text-black rounded py-3 px-4 shadow-xl"
+                >
+                  <option value=""></option>
+                  {categorias.map((categoria) => (
+                    <option key={categoria["descricao"]} value={categoria["descricao"]}>
+                      {categoria["descricao"]}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-col mb-5">
+                <label
+                  htmlFor=""
+                  className="font-bold text-[16px] text-[#187c44] uppercase"
+                >
                   Descrição
                 </label>
                 <input
@@ -51,7 +81,10 @@ const AddExpenseModal = () => {
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex flex-col mb-5">
-                <label htmlFor="" className="font-bold text-[16px] text-[#187c44] uppercase">
+                <label
+                  htmlFor=""
+                  className="font-bold text-[16px] text-[#187c44] uppercase"
+                >
                   Data
                 </label>
                 <input
@@ -63,7 +96,10 @@ const AddExpenseModal = () => {
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex flex-col mb-5">
-                <label htmlFor="" className="font-bold text-[16px] text-[#187c44] uppercase">
+                <label
+                  htmlFor=""
+                  className="font-bold text-[16px] text-[#187c44] uppercase"
+                >
                   Valor
                 </label>
                 <input
@@ -75,7 +111,10 @@ const AddExpenseModal = () => {
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex flex-col mb-5">
-                <label htmlFor="" className="font-bold text-[16px] text-[#187c44] uppercase">
+                <label
+                  htmlFor=""
+                  className="font-bold text-[16px] text-[#187c44] uppercase"
+                >
                   Pagamento
                 </label>
                 <input
