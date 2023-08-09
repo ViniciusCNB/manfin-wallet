@@ -8,7 +8,7 @@ interface PortfolioMenuProps {
 const PortfolioMenu = (props: PortfolioMenuProps) => {
   return (
     <>
-      <div className="bg-[#01141f] w-full h-[15%] flex flex-row justify-between items-center p-4 shadow-lg shadow-black/20">
+      <div className="bg-[#01141f] w-full h-[100px] flex flex-row justify-between items-center p-4 shadow-lg shadow-black/20">
         <div className="flex items-center">
           <span className="text-[#eff3f6] text-[2.5rem] h-fit pr-6 border-r-2">
             ManFin Wallet
