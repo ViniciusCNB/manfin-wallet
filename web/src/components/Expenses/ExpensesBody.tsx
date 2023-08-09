@@ -13,9 +13,11 @@ import axios from "axios"
 import { DespesaProps } from "../../types"
 import ExpensesTable from "./ExpensesTable"
 import { compararPorDataAtualizacao_despesa } from "../../utils"
+import AddCategoryModal from "./AddCategoryModal"
 
 const ExpensesBody = () => {
-  const [open, setOpen] = useState(false)
+  const [open1, setOpen1] = useState(false)
+  const [open2, setOpen2] = useState(false)
   const [despesas, setDespesas] = useState<DespesaProps[]>([])
 
   useEffect(() => {
@@ -25,14 +27,17 @@ const ExpensesBody = () => {
       .then((data) => setDespesas(data))
   }, [])
 
-  console.log(despesas)
   return (
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
         <ExpensesMenu despesas={despesas} />
-        <div className="flex flex-col gap-10 h-full overflow-auto scrollbar-thin scrollbar-thumb-[#187c44] p-6">
-          <div className="bg-gray-300 flex flex-col w-1/2 h-full rounded-lg">
-            <ExpensesTable despesas={despesas.sort(compararPorDataAtualizacao_despesa)} />
+        <div className="grid grid-cols-2 gap-5 h-full">
+          <div className="flex flex-col gap-10 w-full h-full overflow-auto scrollbar-thin scrollbar-thumb-[#187c44] p-6">
+            <div className="bg-gray-300 flex flex-col w-full h-full rounded-lg">
+              <ExpensesTable
+                despesas={despesas.sort(compararPorDataAtualizacao_despesa)}
+              />
+            </div>
           </div>
         </div>
         <div className="flex-col w-[25%] h-full justify-center rounded-lg hidden">
@@ -42,15 +47,27 @@ const ExpensesBody = () => {
             </p>
           </div>
           <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#187c44]">
-            <Dialog.Root open={open} onOpenChange={setOpen}>
+            <Dialog.Root open={open1} onOpenChange={setOpen1}>
               <Dialog.Trigger
                 className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
-                title="Cadastro de uma nova instituição"
+                title="Cadastro de uma nova despesa"
               >
                 Adicionar nova despesa
               </Dialog.Trigger>
 
               <AddExpenseModal />
+            </Dialog.Root>
+          </div>
+          <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#187c44]">
+            <Dialog.Root open={open2} onOpenChange={setOpen2}>
+              <Dialog.Trigger
+                className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                title="Cadastro de uma nova categoria"
+              >
+                Adicionar nova categoria
+              </Dialog.Trigger>
+
+              <AddCategoryModal />
             </Dialog.Root>
           </div>
         </div>
@@ -75,10 +92,25 @@ const ExpensesBody = () => {
               </DropdownMenu.Label>
 
               <DropdownMenu.Item>
-                <Dialog.Root open={open} onOpenChange={setOpen}>
+                <Dialog.Root open={open2} onOpenChange={setOpen2}>
                   <Dialog.Trigger
                     className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
-                    title="Cadastro de uma nova instituição"
+                    title="Cadastro de uma nova categoria"
+                  >
+                    Adicionar nova categoria
+                  </Dialog.Trigger>
+
+                  <AddCategoryModal />
+                </Dialog.Root>
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Separator className="bg-[#187c44] h-[1px]" />
+
+              <DropdownMenu.Item>
+                <Dialog.Root open={open1} onOpenChange={setOpen1}>
+                  <Dialog.Trigger
+                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                    title="Cadastro de uma nova despesa"
                   >
                     Adicionar nova despesa
                   </Dialog.Trigger>
