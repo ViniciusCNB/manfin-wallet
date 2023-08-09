@@ -13,7 +13,7 @@ const PortfolioMenu = (props: PortfolioMenuProps) => {
           <span className="text-[#eff3f6] text-[2.5rem] h-fit pr-6 border-r-2">
             ManFin Wallet
           </span>
-          <span className="text-[#eff3f6] ml-6 text-[2.5rem]">Portfólio</span>
+          <span className="text-[#eff3f6] ml-6 text-[2.1rem]">Portfólio de Investimentos</span>
         </div>
         <div className="text-[#eff3f6] text-[1.5rem] h-fit uppercase flex flex-row gap-2">
           <span>Total Investido:</span>
