@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, lazy, Suspense } from "react"
 import {
   ChartBarHorizontal,
   DotsThreeOutlineVertical,
@@ -14,6 +14,8 @@ import { DespesaProps } from "../../types"
 import ExpensesTable from "./ExpensesTable"
 import { compararPorDataAtualizacao_despesa } from "../../utils"
 import AddCategoryModal from "./AddCategoryModal"
+
+const LazyAddExpenseModal = lazy(() => import("./AddExpenseModal"))
 
 const ExpensesBody = () => {
   const [open1, setOpen1] = useState(false)
@@ -55,7 +57,11 @@ const ExpensesBody = () => {
                 Adicionar nova despesa
               </Dialog.Trigger>
 
-              <AddExpenseModal />
+              {open1 && (
+                    <Suspense>
+                      <LazyAddExpenseModal />
+                    </Suspense>
+                  )}
             </Dialog.Root>
           </div>
           <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#187c44]">
