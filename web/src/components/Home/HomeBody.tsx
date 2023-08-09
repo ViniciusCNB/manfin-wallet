@@ -68,46 +68,29 @@ const HomeBody = () => {
 
   return (
     <>
-      <div className="bg-gradient-to-l from-[#204662] to-[#102533] h-fit max-h-max w-full py-14 px-10 flex flex-col gap-28">
-        <div className="grid grid-cols-2 gap-20 items-center text-left">
+      <div className="bg-white h-fit max-h-max w-full flex flex-row">
+        <div className="flex flex-col w-1/2 gap-20 p-10 bg-gradient-to-l from-[#204662] to-[#102533]">
+          <div className="uppercase text-4xl text-white text-center">
+            <span className="border-b-2">Portfólio de Investimentos</span>
+          </div>
           <div className="text-white bg-slate-500/50 p-5 rounded-lg border-2 text-[1.5rem]">
             <p>
               {">"}
-              {">"} Realize operações na sua carteira como as que estão
-              presentes ao lado.
+              {">"} Realize operações na sua carteira como adicionar um novo
+              ativo ou uma nova aplicação.
               <br />
               {">"}
               {">"} Adicione uma nova instituição financeira para que, dessa
               forma, seja possível adicionar novas aplicações.
             </p>
           </div>
-          <div className="flex justify-center">
-            <div className="bg-[#01141f]/50 border-4 flex flex-col w-[60%] h-fit justify-center">
-              <div className="bg-[#01141f] p-5 flex justify-center border-[1px]">
-                <p className="uppercase font-bold text-xl text-white">
-                  Operações disponíveis
-                </p>
-              </div>
-              <div className="divide-y-[1px] divide-[#01141f]">
-                <div className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-white">
-                  Adicionar nova instituição
-                </div>
-
-                <div className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-white">
-                  Adicionar nova aplicação
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="grid h-full grid-cols-2 text-left gap-20 items-center">
           <div className="w-full h-full flex flex-col justify-center">
             <div className="bg-[#01141f] p-5 rounded-t-lg flex justify-center">
               <p className="uppercase text-xl text-white">
                 Aplicações Cadastradas
               </p>
             </div>
-            <div className="bg-gray-200/80 h-96 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] divide-y-[1px] divide-gray-800 rounded-b-lg">
+            <div className="bg-gray-200/80 h-fit overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] divide-y-[1px] divide-gray-800 rounded-b-lg">
               {data.map((acao) => {
                 return (
                   <div className="w-full grid grid-cols-6 py-2 text-center divide-x-2 divide-[#01141f]">
@@ -182,8 +165,8 @@ const HomeBody = () => {
           <div className="text-white bg-slate-500/50 p-5 rounded-lg border-2 text-[1.5rem]">
             <p>
               {">"}
-              {">"} As aplicações cadastradas aparecerão em uma tabela como ao
-              lado, exibindo assim todos os dados fornecidos no momento da
+              {">"} As aplicações cadastradas aparecerão em uma tabela como a de
+              cima, exibindo assim todos os dados fornecidos no momento da
               operação de registro da aplicação.
               <br />
               {">"}
@@ -191,8 +174,18 @@ const HomeBody = () => {
               investido pelo usuário.
             </p>
           </div>
-        </div>
-        <div className="grid grid-cols-2 gap-20 items-center text-left">
+          <div className="flex flex-col text-center gap-8 items-center">
+            <Chart
+              type="pie"
+              series={PieChartSeries}
+              options={PieChartOptions}
+              width={500}
+              height={300}
+            />
+            <span className="text-white text-2xl uppercase">
+              Distribuição dos Ativos
+            </span>
+          </div>
           <div className="text-white bg-slate-500/50 p-5 rounded-lg border-2 text-[1.5rem]">
             <p>
               {">"}
@@ -210,26 +203,27 @@ const HomeBody = () => {
               identificar os ativos em cada porção do gráfico.
             </p>
           </div>
-          <div className="flex flex-col text-center gap-8 items-center">
-            <Chart
-              type="pie"
-              series={PieChartSeries}
-              options={PieChartOptions}
-              width={500}
-              height={300}
-            />
-            <span className="text-white text-2xl uppercase">
-              Distribuição dos Ativos
-            </span>
+          <div className="flex justify-center items-center">
+            <Link
+              to="/portfolio"
+              className="bg-[#01141f] p-4 uppercase rounded-lg text-white text-2xl border-2 hover:bg-[#01141f]/50"
+            >
+              Ir para o portfólio
+            </Link>
           </div>
         </div>
-        <div className="flex justify-center items-center">
-          <Link
-            to="/portfolio"
-            className="bg-[#01141f] p-4 uppercase rounded-lg text-white text-2xl border-2 hover:bg-[#01141f]/50"
-          >
-            Ir para a aplicação
-          </Link>
+        <div className="bg-gradient-to-r from-[#58c989] to-[#1d9b53] w-1/2 p-10">
+          <div className="uppercase text-4xl text-white text-center">
+            <span className="border-b-2">Gestão de Despesas</span>
+          </div>
+          <div className="flex justify-center items-center">
+            <Link
+              to="/despesas"
+              className="bg-[#187c44] p-4 uppercase rounded-lg text-white text-2xl border-2 hover:bg-[#255c3d]"
+            >
+              Ir para o gestor
+            </Link>
+          </div>
         </div>
       </div>
     </>
