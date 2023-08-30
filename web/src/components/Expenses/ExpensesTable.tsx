@@ -21,6 +21,7 @@ const ExpensesTable = (props: ExpensesTableProps) => {
                 data={despesa.data}
                 valor={despesa.valor}
                 pagamento={despesa.pagamento}
+                categoria={despesa.categoria}
               />
             )
           })}
