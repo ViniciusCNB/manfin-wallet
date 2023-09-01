@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 
 const AddExpenseModal = () => {
   const { register, handleSubmit, reset } = useForm()
-  const [categorias, setCategorias] = useState<{ descricao: string }[]>([])
+  const [categorias, setCategorias] = useState([])
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (data: any) => {
@@ -46,9 +46,12 @@ const AddExpenseModal = () => {
           </Dialog.Title>
 
           <form onSubmit={handleSubmit(onSubmit)} className="relative">
-          <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2">
               <div className="flex flex-col mb-5">
-                <label htmlFor="" className="font-bold text-[16px] text-[#187c44] uppercase">
+                <label
+                  htmlFor=""
+                  className="font-bold text-[16px] text-[#187c44] uppercase"
+                >
                   CATEGORIA
                 </label>
                 <select
@@ -57,7 +60,7 @@ const AddExpenseModal = () => {
                 >
                   <option value=""></option>
                   {categorias.map((categoria) => (
-                    <option key={categoria["descricao"]} value={categoria["descricao"]}>
+                    <option key={categoria["id"]} value={categoria["id"]}>
                       {categoria["descricao"]}
                     </option>
                   ))}

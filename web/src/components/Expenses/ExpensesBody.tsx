@@ -59,7 +59,7 @@ const ExpensesBody = () => {
     xaxis: {
       categories: nomes_pag,
     },
-    colors: ["#00070b"],
+    colors: ["#187c44"],
     dataLabels: {
       enabled: true,
     },
@@ -78,7 +78,7 @@ const ExpensesBody = () => {
             </div>
           </div>
           <div className="flex flex-col h-fit w-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7 self-center z-0 shadow-inner shadow-black/25">
-              <span className="uppercase text-xl text-[#01141f] font-bold">
+              <span className="uppercase text-xl text-[#187c44] font-bold">
                 Distribuição por Forma de Pagamento
               </span>
               <Chart

@@ -1,14 +1,25 @@
+import { useEffect, useState } from "react"
 import { formataData } from "../../utils"
+import axios from "axios"
 
 interface ExpensesCardProps {
   descricao: string
   data: string
   valor: number
   pagamento: string
-  categoria: string
+  categoria: number
 }
 
 const ExpenseCard = (props: ExpensesCardProps) => {
+  const [categoria, setCategoria] = useState()
+
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:8000/categoria/${props.categoria}/`)
+      .then((response) => response.data)
+      .then((data) => setCategoria(data))
+  }, [])
+
   return (
     <>
       <div className="w-full grid grid-cols-5 py-2 text-center divide-x-2 divide-[#187c44]">
@@ -21,7 +32,7 @@ const ExpenseCard = (props: ExpensesCardProps) => {
         <div className="flex justify-center">
           <p>
             <span className="font-bold text-[#187c44]">Categoria</span> <br />
-            {props.categoria}
+            {categoria === undefined ? "" : categoria["descricao"]}
           </p>
         </div>
         <div className="flex justify-center">
