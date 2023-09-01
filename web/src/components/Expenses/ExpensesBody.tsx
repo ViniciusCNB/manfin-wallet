@@ -16,10 +16,12 @@ import { compararPorDataAtualizacao_despesa } from "../../utils"
 import AddCategoryModal from "./AddCategoryModal"
 
 const LazyAddExpenseModal = lazy(() => import("./AddExpenseModal"))
+const LazyListCategoriesModal = lazy(() => import("./ListCategoriesModal"))
 
 const ExpensesBody = () => {
   const [open1, setOpen1] = useState(false)
   const [open2, setOpen2] = useState(false)
+  const [open3, setOpen3] = useState(false)
   const [despesas, setDespesas] = useState<DespesaProps[]>([])
 
   useEffect(() => {
@@ -58,10 +60,10 @@ const ExpensesBody = () => {
               </Dialog.Trigger>
 
               {open1 && (
-                    <Suspense>
-                      <LazyAddExpenseModal />
-                    </Suspense>
-                  )}
+                <Suspense>
+                  <LazyAddExpenseModal />
+                </Suspense>
+              )}
             </Dialog.Root>
           </div>
           <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#187c44]">
@@ -74,6 +76,22 @@ const ExpensesBody = () => {
               </Dialog.Trigger>
 
               <AddCategoryModal />
+            </Dialog.Root>
+          </div>
+          <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#187c44]">
+            <Dialog.Root open={open3} onOpenChange={setOpen3}>
+              <Dialog.Trigger
+                className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                title="Listagem de todas as categorias"
+              >
+                Listar as Categorias
+              </Dialog.Trigger>
+
+              {open3 && (
+                <Suspense>
+                  <LazyListCategoriesModal />
+                </Suspense>
+              )}
             </Dialog.Root>
           </div>
         </div>
@@ -113,6 +131,25 @@ const ExpensesBody = () => {
               <DropdownMenu.Separator className="bg-[#187c44] h-[1px]" />
 
               <DropdownMenu.Item>
+                <Dialog.Root open={open3} onOpenChange={setOpen3}>
+                  <Dialog.Trigger
+                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                    title="Listagem de todas as categorias"
+                  >
+                    Listar categorias
+                  </Dialog.Trigger>
+
+                  {open3 && (
+                    <Suspense>
+                      <LazyListCategoriesModal />
+                    </Suspense>
+                  )}
+                </Dialog.Root>
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Separator className="bg-[#187c44] h-[1px]" />
+
+              <DropdownMenu.Item>
                 <Dialog.Root open={open1} onOpenChange={setOpen1}>
                   <Dialog.Trigger
                     className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
@@ -121,7 +158,11 @@ const ExpensesBody = () => {
                     Adicionar nova despesa
                   </Dialog.Trigger>
 
-                  <AddExpenseModal />
+                  {open1 && (
+                    <Suspense>
+                      <LazyAddExpenseModal />
+                    </Suspense>
+                  )}
                 </Dialog.Root>
               </DropdownMenu.Item>
 
