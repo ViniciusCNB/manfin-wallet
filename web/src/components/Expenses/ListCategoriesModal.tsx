@@ -46,53 +46,59 @@ const ListCategoriesModal = () => {
             Listagem das Categorias
           </Dialog.Title>
           <div className="w-full h-full text-[#187c44] flex flex-col gap-2">
-            {categorias.map((categoria) => {
-              return (
-                <div
-                  className="flex py-6 border-b-[1px] border-[#187c44] text-xl relative font-bold"
-                  key={categoria["descricao"]}
-                >
-                  {categoria["descricao"]}
-                  <div className="flex flex-row gap-1 absolute right-0">
-                    <Dialog.Root
-                      open={openEditar[categoria["descricao"]]}
-                      onOpenChange={() =>
-                        handleOpenEditar(categoria["descricao"])
-                      }
-                    >
-                      <Dialog.Trigger
-                        title="Editar Categoria"
-                        className="rounded-[50%] bg-gray-500 py-2 px-2 text-white hover:bg-gray-700 font-bold text-xs shadow-sm shadow-black/25"
+            {categorias.length === 0 ? (
+              <div className="flex justify-center text-center text-black text-lg">
+                Não há categorias cadastradas.
+              </div>
+            ) : (
+              categorias.map((categoria) => {
+                return (
+                  <div
+                    className="flex py-6 border-b-[1px] border-[#187c44] text-xl relative font-bold"
+                    key={categoria["id"]}
+                  >
+                    {categoria["descricao"]}
+                    <div className="flex flex-row gap-1 absolute right-0">
+                      <Dialog.Root
+                        open={openEditar[categoria["descricao"]]}
+                        onOpenChange={() =>
+                          handleOpenEditar(categoria["descricao"])
+                        }
                       >
-                        <Pencil size={17} weight="bold" />
-                      </Dialog.Trigger>
-                      <EditCategoryModal
-                        id={categoria["id"]}
-                        descricao={categoria["descricao"]}
-                      />
-                    </Dialog.Root>
+                        <Dialog.Trigger
+                          title="Editar Categoria"
+                          className="rounded-[50%] bg-gray-500 py-2 px-2 text-white hover:bg-gray-700 font-bold text-xs shadow-sm shadow-black/25"
+                        >
+                          <Pencil size={17} weight="bold" />
+                        </Dialog.Trigger>
+                        <EditCategoryModal
+                          id={categoria["id"]}
+                          descricao={categoria["descricao"]}
+                        />
+                      </Dialog.Root>
 
-                    <Dialog.Root
-                      open={openDeletar[categoria["descricao"]]}
-                      onOpenChange={() =>
-                        handleOpenDeletar(categoria["descricao"])
-                      }
-                    >
-                      <Dialog.Trigger
-                        title="Excluir Categoria"
-                        className="rounded-[50%] bg-red-500 py-2 px-2 text-white hover:bg-red-700 font-bold text-xs shadow-sm shadow-black/25"
+                      <Dialog.Root
+                        open={openDeletar[categoria["descricao"]]}
+                        onOpenChange={() =>
+                          handleOpenDeletar(categoria["descricao"])
+                        }
                       >
-                        <Trash size={17} weight="bold" />
-                      </Dialog.Trigger>
-                      <DeleteCategoryModal
-                        id={categoria["id"]}
-                        descricao={categoria["descricao"]}
-                      />
-                    </Dialog.Root>
+                        <Dialog.Trigger
+                          title="Excluir Categoria"
+                          className="rounded-[50%] bg-red-500 py-2 px-2 text-white hover:bg-red-700 font-bold text-xs shadow-sm shadow-black/25"
+                        >
+                          <Trash size={17} weight="bold" />
+                        </Dialog.Trigger>
+                        <DeleteCategoryModal
+                          id={categoria["id"]}
+                          descricao={categoria["descricao"]}
+                        />
+                      </Dialog.Root>
+                    </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })
+            )}
           </div>
         </Dialog.Content>
       </Dialog.Portal>
