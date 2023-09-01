@@ -13,18 +13,24 @@ const ExpensesTable = (props: ExpensesTableProps) => {
           <p className="uppercase text-xl text-white">Histórico de despesas</p>
         </div>
         <div className="bg-gray-300 h-full overflow-auto scrollbar-thin scrollbar-thumb-[#187c44] divide-y-[1px] divide-green-700 rounded-b-lg shadow-black/25 shadow-inner">
-          {props.despesas.map((despesa) => {
-            return (
-              <ExpenseCard
-                key={despesa.id}
-                descricao={despesa.descricao}
-                data={despesa.data}
-                valor={despesa.valor}
-                pagamento={despesa.pagamento}
-                categoria={despesa.categoria}
-              />
-            )
-          })}
+          {props.despesas.length === 0 ? (
+            <div className="flex justify-center items-center text-black text-4xl w-full h-full">
+              Não há despesas cadastradas.
+            </div>
+          ) : (
+            props.despesas.map((despesa) => {
+              return (
+                <ExpenseCard
+                  key={despesa.id}
+                  descricao={despesa.descricao}
+                  data={despesa.data}
+                  valor={despesa.valor}
+                  pagamento={despesa.pagamento}
+                  categoria={despesa.categoria}
+                />
+              )
+            })
+          )}
         </div>
       </div>
     </>

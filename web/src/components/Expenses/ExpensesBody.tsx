@@ -7,7 +7,6 @@ import {
 import { Link } from "react-router-dom"
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import * as Dialog from "@radix-ui/react-dialog"
-import AddExpenseModal from "./AddExpenseModal"
 import ExpensesMenu from "./ExpensesMenu"
 import axios from "axios"
 import { DespesaProps } from "../../types"
