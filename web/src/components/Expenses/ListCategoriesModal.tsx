@@ -3,13 +3,14 @@ import * as Dialog from "@radix-ui/react-dialog"
 import axios from "axios"
 import { Pencil, Trash } from "@phosphor-icons/react"
 import EditCategoryModal from "./EditCategoryModal"
+import DeleteCategoryModal from "./DeleteCategoryModal"
 
 // import DeleteCategoria from "./DeleteCategoria"
 
 const ListCategoriesModal = () => {
   const [categorias, setCategorias] = useState([])
   const [openEditar, setOpenEditar] = useState({})
-  const [openDeletar, setOpenDeletar] = useState(false)
+  const [openDeletar, setOpenDeletar] = useState({})
 
   useEffect(() => {
     axios
@@ -26,6 +27,16 @@ const ListCategoriesModal = () => {
   const handleCloseEditar = (categoriaDesc: string) => {
     // Feche o modal de edição para o item com o ID específico
     setOpenEditar({ ...openEditar, [categoriaDesc]: false })
+  }
+
+  const handleOpenDeletar = (categoriaDesc: string) => {
+    // Abra o modal de edição para o item com o ID específico
+    setOpenDeletar({ ...openDeletar, [categoriaDesc]: true })
+  }
+
+  const handleCloseDeletar = (categoriaDesc: string) => {
+    // Feche o modal de edição para o item com o ID específico
+    setOpenDeletar({ ...openDeletar, [categoriaDesc]: false })
   }
 
   return (
@@ -61,8 +72,10 @@ const ListCategoriesModal = () => {
                     </Dialog.Root>
 
                     <Dialog.Root
-                      open={openDeletar}
-                      onOpenChange={setOpenDeletar}
+                      open={openDeletar[categoria["descricao"]]}
+                      onOpenChange={() =>
+                        handleOpenDeletar(categoria["descricao"])
+                      }
                     >
                       <Dialog.Trigger
                         title="Excluir Categoria"
@@ -70,9 +83,7 @@ const ListCategoriesModal = () => {
                       >
                         <Trash size={17} weight="bold" />
                       </Dialog.Trigger>
-                      {/* <DeleteCategoria
-                        nome_categoria={categoria["nome_categoria"]}
-                      /> */}
+                      <DeleteCategoryModal categoria={categoria["descricao"]} />
                     </Dialog.Root>
                   </div>
                 </div>
