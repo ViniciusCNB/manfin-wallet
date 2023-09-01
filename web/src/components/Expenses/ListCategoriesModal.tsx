@@ -5,6 +5,11 @@ import { Pencil, Trash } from "@phosphor-icons/react"
 import EditCategoryModal from "./EditCategoryModal"
 import DeleteCategoryModal from "./DeleteCategoryModal"
 
+interface CategoriaProps {
+  id: number
+  descricao: string
+}
+
 const ListCategoriesModal = () => {
   const [categorias, setCategorias] = useState([])
   const [openEditar, setOpenEditar] = useState({})
@@ -17,26 +22,28 @@ const ListCategoriesModal = () => {
       .then((data) => setCategorias(data))
   }, [])
 
-  const handleOpenEditar = (categoriaDesc: string) => {
+  const handleOpenEditar = (categoria_desc: string) => {
     // Abra o modal de edição para o item com o ID específico
-    setOpenEditar({ ...openEditar, [categoriaDesc]: true })
+    setOpenEditar({ ...openEditar, [categoria_desc]: true })
   }
 
-  const handleCloseEditar = (categoriaDesc: string) => {
+  const handleCloseEditar = (categoria_desc: string) => {
     // Feche o modal de edição para o item com o ID específico
-    setOpenEditar({ ...openEditar, [categoriaDesc]: false })
+    setOpenEditar({ ...openEditar, [categoria_desc]: false })
+    console.log("teste clique")
   }
 
-  const handleOpenDeletar = (categoriaDesc: string) => {
+  const handleOpenDeletar = (categoria_desc: string) => {
     // Abra o modal de edição para o item com o ID específico
-    setOpenDeletar({ ...openDeletar, [categoriaDesc]: true })
+    setOpenDeletar({ ...openDeletar, [categoria_desc]: true })
   }
 
-  const handleCloseDeletar = (categoriaDesc: string) => {
+  const handleCloseDeletar = (categoria_desc: string) => {
     // Feche o modal de edição para o item com o ID específico
-    setOpenDeletar({ ...openDeletar, [categoriaDesc]: false })
+    setOpenDeletar({ ...openDeletar, [categoria_desc]: false })
   }
 
+  console.log(openEditar)
   return (
     <>
       <Dialog.Portal>
@@ -62,7 +69,9 @@ const ListCategoriesModal = () => {
                       <Dialog.Root
                         open={openEditar[categoria["descricao"]]}
                         onOpenChange={() =>
-                          handleOpenEditar(categoria["descricao"])
+                          openEditar[categoria["descricao"]] === false || null
+                            ? handleOpenEditar(categoria["descricao"])
+                            : handleCloseEditar(categoria["descricao"])
                         }
                       >
                         <Dialog.Trigger
@@ -74,13 +83,18 @@ const ListCategoriesModal = () => {
                         <EditCategoryModal
                           id={categoria["id"]}
                           descricao={categoria["descricao"]}
+                          handleClose={() =>
+                            handleCloseEditar(categoria["descricao"])
+                          }
                         />
                       </Dialog.Root>
 
                       <Dialog.Root
                         open={openDeletar[categoria["descricao"]]}
                         onOpenChange={() =>
-                          handleOpenDeletar(categoria["descricao"])
+                          openDeletar[categoria["descricao"]] === false || null
+                            ? handleOpenDeletar(categoria["descricao"])
+                            : handleCloseDeletar(categoria["descricao"])
                         }
                       >
                         <Dialog.Trigger

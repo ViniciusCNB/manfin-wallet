@@ -6,6 +6,7 @@ import { Pencil } from "@phosphor-icons/react"
 interface EditCategoryModalProps {
   id: number
   descricao: string
+  handleClose: (categoria_desc: string) => void
 }
 
 const EditCategoryModal = (props: EditCategoryModalProps) => {
@@ -54,8 +55,11 @@ const EditCategoryModal = (props: EditCategoryModalProps) => {
               </div>
             </div>
 
-            <Dialog.Close className="bg-gray-600 text-base font-bold rounded-md p-3 text-white hover:bg-gray-600/50 uppercase shadow-md shadow-black/25 absolute right-16">
-              <button>Cancelar</button>
+            <Dialog.Close
+              className="bg-gray-600 text-base font-bold rounded-md p-3 text-white hover:bg-gray-600/50 uppercase shadow-md shadow-black/25 absolute right-16"
+              onClick={() => props.handleClose(props.descricao)}
+            >
+              Cancelar
             </Dialog.Close>
             <button className="bg-[#187c44] text-base font-bold rounded-md p-3 text-white hover:bg-[#187c44]/50 uppercase shadow-md shadow-black/25 absolute right-0">
               <Pencil size={25} weight="fill" />
