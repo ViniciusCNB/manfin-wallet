@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog"
 import axios from "axios"
 import { useForm } from "react-hook-form"
-import { Plus } from "@phosphor-icons/react"
+import { Pencil } from "@phosphor-icons/react"
 
 interface EditCategoryModalProps {
   id: number
@@ -32,7 +32,7 @@ const EditCategoryModal = (props: EditCategoryModalProps) => {
       <Dialog.Portal>
         <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
 
-        <Dialog.Content className="fixed bg-[#bdbdbd]/90 py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[30rem] h-[18.5rem] shadow-lg shadow-black/25">
+        <Dialog.Content className="fixed bg-[#bbbbbb] py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[30rem] h-[18.5rem] shadow-lg shadow-black/25">
           <Dialog.Title className="bg-[#187c44] rounded-lg uppercase py-4 text-2xl text-center font-extrabold mb-10 shadow-lg shadow-black/25">
             Editar Categoria {props.descricao}
           </Dialog.Title>
@@ -58,7 +58,7 @@ const EditCategoryModal = (props: EditCategoryModalProps) => {
               <button>Cancelar</button>
             </Dialog.Close>
             <button className="bg-[#187c44] text-base font-bold rounded-md p-3 text-white hover:bg-[#187c44]/50 uppercase shadow-md shadow-black/25 absolute right-0">
-              <Plus size={25} weight="fill" />
+              <Pencil size={25} weight="fill" />
             </button>
           </form>
         </Dialog.Content>
