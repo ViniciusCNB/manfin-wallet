@@ -25,13 +25,13 @@ const DeleteCategoryModal = (props: DeleteCategoryModalProps) => {
 
           <div className="grid grid-cols-2 gap-5">
             <button
-              className="rounded bg-[#187c44] mt-3 py-2 px-3 text-white hover:bg-[#187c44]/50 font-bold text-xl"
+              className="rounded bg-[#187c44] mt-3 py-2 px-3 text-white hover:bg-[#187c44]/50 font-bold text-xl shadow-md shadow-black/25"
               onClick={handleClick}
             >
               CONFIRMAR
             </button>
 
-            <Dialog.Close className="rounded bg-gray-500 mt-3 py-2 px-3 text-white hover:bg-gray-700 font-bold text-xl">
+            <Dialog.Close className="rounded bg-gray-700 mt-3 py-2 px-3 text-white hover:bg-gray-500 font-bold text-xl shadow-md shadow-black/25">
               CANCELAR
             </Dialog.Close>
           </div>
