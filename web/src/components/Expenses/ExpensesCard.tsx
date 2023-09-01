@@ -18,7 +18,7 @@ const ExpenseCard = (props: ExpensesCardProps) => {
       .get(`http://127.0.0.1:8000/categoria/${props.categoria}/`)
       .then((response) => response.data)
       .then((data) => setCategoria(data))
-  }, [])
+  }, [props.categoria])
 
   return (
     <>

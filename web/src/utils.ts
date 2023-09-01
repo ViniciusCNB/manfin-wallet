@@ -46,6 +46,33 @@ export const contaInstituicao = (data_inst: string[], nomes_inst: string[], quan
   }
 }
 
+export const fillDataPag = (despesas: DespesaProps[], data_pag: string[]) => {
+  despesas.map((despesa: DespesaProps) => {
+    data_pag.push(despesa.pagamento)
+  })
+}
+
+export const contaPagamento = (data_pag: string[], nomes_pag: string[], quantidades_pag: number[]) => {
+  const contagem: { [key: string]: number } = {}
+
+  for (let i = 0; i < data_pag.length; i++) {
+    const elemento = data_pag[i]
+    if (contagem[elemento]) {
+      contagem[elemento]++
+    } else {
+      contagem[elemento] = 1
+    }
+  }
+
+  for (const nome in contagem) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (contagem.hasOwnProperty(nome)) {
+      nomes_pag.push(nome)
+      quantidades_pag.push(contagem[nome])
+    }
+  }
+}
+
 export const compararPorValorTotal = (a: AcaoProps, b: AcaoProps) => {
   // Ordem descrescente
   if (a.valor_total > b.valor_total) {
