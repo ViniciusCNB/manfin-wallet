@@ -5,7 +5,7 @@ from expenses.models import Despesa, Categoria
 class CategoriaSerializer(ModelSerializer):
     class Meta:
         model = Categoria
-        fields = ['descricao']
+        fields = ('id', 'descricao')
 
 
 class DespesaSerializer(ModelSerializer):

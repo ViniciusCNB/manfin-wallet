@@ -2,7 +2,8 @@ from django.db.models import Model, CharField, DateField, FloatField, AutoField,
 
 
 class Categoria(Model):
-    descricao = CharField(max_length=100, primary_key=True)
+    id = AutoField(primary_key=True)
+    descricao = CharField(max_length=100)
 
 
 class Despesa(Model):
