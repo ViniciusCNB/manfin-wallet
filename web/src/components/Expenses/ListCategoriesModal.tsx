@@ -5,8 +5,6 @@ import { Pencil, Trash } from "@phosphor-icons/react"
 import EditCategoryModal from "./EditCategoryModal"
 import DeleteCategoryModal from "./DeleteCategoryModal"
 
-// import DeleteCategoria from "./DeleteCategoria"
-
 const ListCategoriesModal = () => {
   const [categorias, setCategorias] = useState([])
   const [openEditar, setOpenEditar] = useState({})
@@ -68,7 +66,10 @@ const ListCategoriesModal = () => {
                       >
                         <Pencil size={17} weight="bold" />
                       </Dialog.Trigger>
-                      <EditCategoryModal categoria={categoria["descricao"]} />
+                      <EditCategoryModal
+                        id={categoria["id"]}
+                        descricao={categoria["descricao"]}
+                      />
                     </Dialog.Root>
 
                     <Dialog.Root
@@ -83,7 +84,10 @@ const ListCategoriesModal = () => {
                       >
                         <Trash size={17} weight="bold" />
                       </Dialog.Trigger>
-                      <DeleteCategoryModal categoria={categoria["descricao"]} />
+                      <DeleteCategoryModal
+                        id={categoria["id"]}
+                        descricao={categoria["descricao"]}
+                      />
                     </Dialog.Root>
                   </div>
                 </div>

@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form"
 import { Plus } from "@phosphor-icons/react"
 
 interface EditCategoryModalProps {
-  categoria: string
+  id: number
+  descricao: string
 }
 
 const EditCategoryModal = (props: EditCategoryModalProps) => {
@@ -13,7 +14,7 @@ const EditCategoryModal = (props: EditCategoryModalProps) => {
   const onSubmit = async (data: unknown) => {
     try {
       await axios
-        .put(`http://127.0.0.1:8000/categoria/${props.categoria}/`, data)
+        .put(`http://127.0.0.1:8000/categoria/${props.id}/`, data)
         .then((response) => response.data)
         .then((data) =>
           alert(`Categoria ${data.descricao} editada com sucesso.`)
@@ -33,7 +34,7 @@ const EditCategoryModal = (props: EditCategoryModalProps) => {
 
         <Dialog.Content className="fixed bg-[#bdbdbd]/90 py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[30rem] h-[18.5rem] shadow-lg shadow-black/25">
           <Dialog.Title className="bg-[#187c44] rounded-lg uppercase py-4 text-2xl text-center font-extrabold mb-10 shadow-lg shadow-black/25">
-            Editar Categoria {props.categoria}
+            Editar Categoria {props.descricao}
           </Dialog.Title>
 
           <form onSubmit={handleSubmit(onSubmit)} className="relative">

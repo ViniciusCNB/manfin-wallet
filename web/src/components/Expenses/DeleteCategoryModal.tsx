@@ -2,13 +2,14 @@ import * as Dialog from "@radix-ui/react-dialog"
 import axios from "axios"
 
 interface DeleteCategoryModalProps {
-  categoria: string
+  id: number
+  descricao: string
 }
 
 const DeleteCategoryModal = (props: DeleteCategoryModalProps) => {
   const handleClick = async () => {
     await axios
-      .delete(`http://127.0.0.1:8000/categoria/${props.categoria}/`)
+      .delete(`http://127.0.0.1:8000/categoria/${props.id}/`)
       .then(() => alert("Categoria excluída."))
       .then(() => window.location.reload())
   }
@@ -17,9 +18,9 @@ const DeleteCategoryModal = (props: DeleteCategoryModalProps) => {
     <div>
       <Dialog.Portal>
         <Dialog.Overlay className="bg-black/50 inset-0 fixed" />
-        <Dialog.Content className="fixed bg-yellow-100 py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[30rem] h-[16rem] shadow-lg shadow-black/25 overflow-auto">
+        <Dialog.Content className="fixed bg-[#bdbdbd]/90 py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[30rem] h-[14rem] shadow-lg shadow-black/25 overflow-auto">
           <Dialog.Title className="text-[#187c44] uppercase font-bold text-center text-2xl font-serif p-2 border-[3px] border-[#187c44] mb-10">
-            Deseja Deletar a Categoria: {props.categoria}?
+            Deseja Deletar a Categoria: {props.descricao}?
           </Dialog.Title>
 
           <div className="grid grid-cols-2 gap-5">
