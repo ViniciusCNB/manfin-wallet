@@ -11,8 +11,9 @@ import ExpensesMenu from "./ExpensesMenu"
 import axios from "axios"
 import { DespesaProps } from "../../types"
 import ExpensesTable from "./ExpensesTable"
-import { compararPorDataAtualizacao_despesa } from "../../utils"
+import { compararPorDataAtualizacao_despesa, contaPagamento, fillDataPag } from "../../utils"
 import AddCategoryModal from "./AddCategoryModal"
+import Chart from "react-apexcharts"
 
 const LazyAddExpenseModal = lazy(() => import("./AddExpenseModal"))
 const LazyListCategoriesModal = lazy(() => import("./ListCategoriesModal"))
@@ -30,6 +31,40 @@ const ExpensesBody = () => {
       .then((data) => setDespesas(data))
   }, [])
 
+  const data_pag: string[] = []
+  fillDataPag(despesas, data_pag)
+
+  const nomes_pag: string[] = []
+  const quantidades_pag: number[] = []
+  contaPagamento(data_pag, nomes_pag, quantidades_pag)
+
+  const BarChartSeries = [
+    {
+      name: "Quantidade de ativos",
+      data: quantidades_pag,
+    },
+  ]
+
+  const BarChartOptions = {
+    chart: {
+      id: "basic-bar",
+    },
+    plotOptions: {
+      bar: {
+        borderRadius: 2,
+        horizontal: true,
+        barHeight: "50%",
+      },
+    },
+    xaxis: {
+      categories: nomes_pag,
+    },
+    colors: ["#00070b"],
+    dataLabels: {
+      enabled: true,
+    },
+  }
+
   return (
     <>
       <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
@@ -42,6 +77,18 @@ const ExpensesBody = () => {
               />
             </div>
           </div>
+          <div className="flex flex-col h-fit w-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7 self-center z-0 shadow-inner shadow-black/25">
+              <span className="uppercase text-xl text-[#01141f] font-bold">
+                Distribuição por Forma de Pagamento
+              </span>
+              <Chart
+                type="bar"
+                series={BarChartSeries}
+                options={BarChartOptions}
+                width={300}
+                height={200}
+              />
+            </div>
         </div>
         <div className="flex-col w-[25%] h-full justify-center rounded-lg hidden">
           <div className="bg-[#187c44] p-5 flex justify-center rounded-t-lg">
