@@ -14,14 +14,18 @@ import ExpensesTable from "./ExpensesTable"
 import { compararPorDataAtualizacao_despesa, contaPagamento, fillDataPag } from "../../utils"
 import AddCategoryModal from "./AddCategoryModal"
 import Chart from "react-apexcharts"
+import AddPaymentModal from "./AddPaymentModal"
 
 const LazyAddExpenseModal = lazy(() => import("./AddExpenseModal"))
 const LazyListCategoriesModal = lazy(() => import("./ListCategoriesModal"))
+const LazyListPaymentsModal = lazy(() => import("./ListPaymentsModal"))
 
 const ExpensesBody = () => {
   const [open1, setOpen1] = useState(false)
   const [open2, setOpen2] = useState(false)
   const [open3, setOpen3] = useState(false)
+  const [open4, setOpen4] = useState(false)
+  const [open5, setOpen5] = useState(false)
   const [despesas, setDespesas] = useState<DespesaProps[]>([])
 
   useEffect(() => {
@@ -140,6 +144,34 @@ const ExpensesBody = () => {
               )}
             </Dialog.Root>
           </div>
+          <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#187c44]">
+            <Dialog.Root open={open4} onOpenChange={setOpen4}>
+              <Dialog.Trigger
+                className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                title="Cadastro de uma nova forma de pagamento"
+              >
+                Adicionar nova forma de pagamento
+              </Dialog.Trigger>
+
+              <AddPaymentModal />
+            </Dialog.Root>
+          </div>
+          <div className="bg-gray-300 rounded-b-lg divide-y-[1px] divide-[#187c44]">
+            <Dialog.Root open={open5} onOpenChange={setOpen5}>
+              <Dialog.Trigger
+                className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                title="Listagem de todas as formas de pagamento"
+              >
+                Listar as formas de pagamento
+              </Dialog.Trigger>
+
+              {open5 && (
+                <Suspense>
+                  <LazyListPaymentsModal />
+                </Suspense>
+              )}
+            </Dialog.Root>
+          </div>
         </div>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger
@@ -188,6 +220,40 @@ const ExpensesBody = () => {
                   {open3 && (
                     <Suspense>
                       <LazyListCategoriesModal />
+                    </Suspense>
+                  )}
+                </Dialog.Root>
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Separator className="bg-[#187c44] h-[1px]" />
+
+              <DropdownMenu.Item>
+                <Dialog.Root open={open4} onOpenChange={setOpen4}>
+                  <Dialog.Trigger
+                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                    title="Cadastro de uma nova forma de pagamento"
+                  >
+                    Adicionar nova forma de pagamento
+                  </Dialog.Trigger>
+
+                  <AddPaymentModal />
+                </Dialog.Root>
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Separator className="bg-[#187c44] h-[1px]" />
+
+              <DropdownMenu.Item>
+                <Dialog.Root open={open5} onOpenChange={setOpen5}>
+                  <Dialog.Trigger
+                    className="hover:bg-gray-400/50 w-full flex justify-center p-4 uppercase text-sm"
+                    title="Listagem de todas as formas de pagamento"
+                  >
+                    Listar formas de pagamento
+                  </Dialog.Trigger>
+
+                  {open5 && (
+                    <Suspense>
+                      <LazyListPaymentsModal />
                     </Suspense>
                   )}
                 </Dialog.Root>
