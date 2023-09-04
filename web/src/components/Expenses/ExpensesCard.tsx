@@ -29,7 +29,6 @@ const ExpenseCard = (props: ExpensesCardProps) => {
       .then((data) => setFormaPagamento(data))
   }, [props.forma_pagamento])
 
-  console.log(props.forma_pagamento)
   return (
     <>
       <div className="w-full grid grid-cols-6 py-2 text-center divide-x-2 divide-[#187c44]">

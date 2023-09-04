@@ -11,9 +11,17 @@ const AddExpenseModal = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (data: any) => {
-    const editData = {
+
+    let editData = {
       ...data,
       valor: data["valor"].replace(/,/g, "."),
+    }
+
+    if (data["observacao"] === "") {
+      editData = {
+        ...editData,
+        observacao: "-"
+      }
     }
 
     try {
