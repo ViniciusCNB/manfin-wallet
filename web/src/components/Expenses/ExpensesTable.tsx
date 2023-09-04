@@ -25,8 +25,9 @@ const ExpensesTable = (props: ExpensesTableProps) => {
                   descricao={despesa.descricao}
                   data={despesa.data}
                   valor={despesa.valor}
-                  pagamento={despesa.pagamento}
+                  forma_pagamento={despesa.forma_pagamento}
                   categoria={despesa.categoria}
+                  observacao={despesa.observacao}
                 />
               )
             })

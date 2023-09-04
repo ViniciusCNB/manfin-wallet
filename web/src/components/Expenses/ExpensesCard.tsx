@@ -6,12 +6,14 @@ interface ExpensesCardProps {
   descricao: string
   data: string
   valor: number
-  pagamento: string
+  forma_pagamento: number
   categoria: number
+  observacao: string
 }
 
 const ExpenseCard = (props: ExpensesCardProps) => {
   const [categoria, setCategoria] = useState()
+  const [formaPagamento, setFormaPagamento] = useState()
 
   useEffect(() => {
     axios
@@ -20,9 +22,17 @@ const ExpenseCard = (props: ExpensesCardProps) => {
       .then((data) => setCategoria(data))
   }, [props.categoria])
 
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:8000/forma-pagamento/${props.forma_pagamento}/`)
+      .then((response) => response.data)
+      .then((data) => setFormaPagamento(data))
+  }, [props.forma_pagamento])
+
+  console.log(props.forma_pagamento)
   return (
     <>
-      <div className="w-full grid grid-cols-5 py-2 text-center divide-x-2 divide-[#187c44]">
+      <div className="w-full grid grid-cols-6 py-2 text-center divide-x-2 divide-[#187c44]">
         <div className="flex justify-center">
           <p>
             <span className="font-bold text-[#187c44]">Data</span> <br />
@@ -53,7 +63,13 @@ const ExpenseCard = (props: ExpensesCardProps) => {
           <p>
             <span className="font-bold text-[#187c44]">Forma de Pagamento</span>{" "}
             <br />
-            {props.pagamento}
+            {formaPagamento === undefined ? "" : formaPagamento["descricao"]}
+          </p>
+        </div>
+        <div className="flex justify-center">
+          <p>
+            <span className="font-bold text-[#187c44]">Observação</span> <br />
+            {props.observacao}
           </p>
         </div>
       </div>

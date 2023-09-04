@@ -12,6 +12,7 @@ export interface DespesaProps {
   descricao: string
   data: string
   valor: number
-  pagamento: string
+  forma_pagamento: number
   categoria: number
+  observacao: string
 }
