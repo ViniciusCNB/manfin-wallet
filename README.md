@@ -1,8 +1,8 @@
-# Portfólio de Investimentos
+# ManFin Wallet
 
-Este projeto visa simular uma carteira de investimentos e algumas de suas funcionalidades.
+"ManFin Wallet" é um projeto que tem como objetivo permitir ao usuário gerenciar sua vida financeira em dois âmbitos: investimentos e depesas.
 
-Tecnologias utilizadas:
+Tecnologias utilizadas para o desenvolvimento do projeto:
 - Front em React;
 - Back em Django;
 - Banco de Dados PostgreSQL.
