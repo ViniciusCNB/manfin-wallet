@@ -114,8 +114,8 @@ const PortfolioBody = () => {
 
   return (
     <>
-      <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
-        <PortfolioMenu acoes={acoes} />
+      <div className="bg-slate-600 w- flex flex-col relative">
+        {/* <PortfolioMenu acoes={acoes} /> */}
         <div className="flex flex-col gap-10 overflow-auto scrollbar-thin scrollbar-thumb-[#01141f] p-6">
           <div className="w-full h-[75%] flex flex-row gap-6">
             <div className="flex-col w-[25%] h-full justify-center rounded-lg hidden">

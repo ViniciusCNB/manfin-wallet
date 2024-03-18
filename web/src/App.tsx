@@ -7,21 +7,19 @@ import ApplicationPage from "./pages/ApplicationPage"
 import ExpensesPage from "./pages/ExpensesPage"
 import NavBar from "./components/NavBar"
 import Menu from "./components/Menu"
-import Footer from "./components/Footer"
 
 const Layout = () => {
   return (
-    <div className="main">
+    <div className="w-screen h-screen">
       <NavBar />
-      <div className="container">
-        <div className="menuContainer">
+      <div className="flex">
+        <div className="">
           <Menu />
         </div>
-        <div className="contentContainer">
+        <div className="w-full bg-red-500">
           <Outlet />
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

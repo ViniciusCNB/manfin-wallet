@@ -11,7 +11,7 @@ import ExpensesMenu from "./ExpensesMenu"
 import axios from "axios"
 import { DespesaProps } from "../../types"
 import ExpensesTable from "./ExpensesTable"
-import { compararPorDataAtualizacao_despesa, contaPagamento, fillDataPag } from "../../utils"
+import { compararPorDataAtualizacao_despesa, contaPagamento } from "../../utils"
 import AddCategoryModal from "./AddCategoryModal"
 import Chart from "react-apexcharts"
 import AddPaymentModal from "./AddPaymentModal"
@@ -27,6 +27,7 @@ const ExpensesBody = () => {
   const [open4, setOpen4] = useState(false)
   const [open5, setOpen5] = useState(false)
   const [despesas, setDespesas] = useState<DespesaProps[]>([])
+  const [formasPagamento, setFormasPagamento] = useState([])
 
   useEffect(() => {
     axios
@@ -35,8 +36,15 @@ const ExpensesBody = () => {
       .then((data) => setDespesas(data))
   }, [])
 
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/forma-pagamento/")
+      .then((response) => response.data)
+      .then((data) => setFormasPagamento(data))
+  }, [])
+
   const data_pag: string[] = []
-  fillDataPag(despesas, data_pag)
+  // fillDataPag(despesas, data_pag)
 
   const nomes_pag: string[] = []
   const quantidades_pag: number[] = []
@@ -71,30 +79,69 @@ const ExpensesBody = () => {
 
   return (
     <>
-      <div className="bg-[#eff3f6] w-screen h-screen flex flex-col relative">
-        <ExpensesMenu despesas={despesas} />
-        <div className="grid grid-cols-2 gap-5 h-full">
+      <div className="bg-slate-500 h-full flex flex-col relative overflow-auto scrollbar-thin scrollbar-thumb-[#2a3447]">
+        <div className="overflow-auto h-full">
+          <div className="bg-blue-500/10 p-5 border">TESTE</div>
+          <div className="bg-blue-500/10 p-5 border">TESTE</div>
+          <div className="bg-blue-500/10 p-5 border">TESTE</div>
+          <div className="bg-blue-500/10 p-5 border">TESTE</div>
+          <div className="bg-blue-500/10 p-5 border">TESTE</div>
+          <div className="bg-blue-500/10 p-5 border">TESTE</div>
+          <div className="bg-blue-500/10 p-5 border">TESTE</div>
+          <div className="bg-blue-500/10 p-5 border">TESTE</div>
+          <div className="bg-blue-500/10 p-5 border">TESTE</div>
+          <div className="bg-blue-500/10 p-5 border">TESTE</div>
+
+        </div>
+
+        {/* <Drawer /> */}
+        {/* <ExpensesMenu despesas={despesas} /> */}
+        <div className="grid grid-cols-2 gap-5 h-full p-6">
           <div className="flex flex-col gap-10 w-full h-full overflow-auto scrollbar-thin scrollbar-thumb-[#187c44] p-6">
-            <div className="bg-gray-300 flex flex-col w-full h-full rounded-lg">
+            {/* <div className="bg-gray-300 flex flex-col w-full h-full rounded-lg">
               <ExpensesTable
                 despesas={despesas.sort(compararPorDataAtualizacao_despesa)}
               />
-            </div>
+            </div> */}
           </div>
-          <div className="flex flex-col h-fit w-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7 self-center z-0 shadow-inner shadow-black/25">
-              <span className="uppercase text-xl text-[#187c44] font-bold">
-                Distribuição por Forma de Pagamento
-              </span>
-              <Chart
-                type="bar"
-                series={BarChartSeries}
-                options={BarChartOptions}
-                width={300}
-                height={200}
-              />
-            </div>
+          {/* <div className="flex flex-col h-fit w-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7 self-center z-0 shadow-inner shadow-black/25">
+            <span className="uppercase text-xl text-[#187c44] font-bold">
+              Distribuição por Forma de Pagamento
+            </span>
+            <Chart
+              type="bar"
+              series={BarChartSeries}
+              options={BarChartOptions}
+              width={300}
+              height={200}
+            />
+            <Chart
+              type="bar"
+              series={BarChartSeries}
+              options={BarChartOptions}
+              width={300}
+              height={200}
+            />
+            <Chart
+              type="bar"
+              series={BarChartSeries}
+              options={BarChartOptions}
+              width={300}
+              height={200}
+            />
+            <Chart
+              type="bar"
+              series={BarChartSeries}
+              options={BarChartOptions}
+              width={300}
+              height={200}
+            />
+          </div> */}
+          {/* <div className="bg-gray-300 flex flex-col w-fit h-fit rounded-lg p-6">
+            Resumo das despesas por categoria
+          </div> */}
         </div>
-        <div className="flex-col w-[25%] h-full justify-center rounded-lg hidden">
+        {/* <div className="flex-col w-[25%] h-full justify-center rounded-lg hidden">
           <div className="bg-[#187c44] p-5 flex justify-center rounded-t-lg">
             <p className="uppercase text-xl text-white">
               Operações disponíveis
@@ -172,8 +219,8 @@ const ExpensesBody = () => {
               )}
             </Dialog.Root>
           </div>
-        </div>
-        <DropdownMenu.Root>
+        </div> */}
+        {/* <DropdownMenu.Root>
           <DropdownMenu.Trigger
             className="bg-[#187c44] absolute bottom-[120px] right-4 p-3 rounded-[50%] hover:bg-[#255c3d] shadow-lg shadow-black/20"
             title="Exibir opções"
@@ -281,8 +328,8 @@ const ExpensesBody = () => {
               <DropdownMenu.Arrow fill="#187c44" />
             </DropdownMenu.Content>
           </DropdownMenu.Portal>
-        </DropdownMenu.Root>
-        <Link
+        </DropdownMenu.Root> */}
+        {/* <Link
           to="/portfolio"
           className="bg-[#187c44] absolute bottom-16 right-4 p-3 rounded-[50%] hover:bg-[#255c3d] shadow-lg shadow-black/20"
           title="Ir para o Portfólio"
@@ -295,7 +342,7 @@ const ExpensesBody = () => {
           title="Ir para a Home"
         >
           <House size={20} color="white" weight="fill" />
-        </Link>
+        </Link> */}
       </div>
     </>
   )
