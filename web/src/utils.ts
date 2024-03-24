@@ -46,11 +46,11 @@ export const contaInstituicao = (data_inst: string[], nomes_inst: string[], quan
   }
 }
 
-export const fillDataPag = (despesas: DespesaProps[], data_pag: string[]) => {
-  despesas.map((despesa: DespesaProps) => {
-    data_pag.push(despesa.pagamento)
-  })
-}
+// export const fillDataPag = (despesas: DespesaProps[], data_pag: string[]) => {
+//   despesas.map((despesa: DespesaProps) => {
+//     data_pag.push(despesa.forma_pagamento)
+//   })
+// }
 
 export const contaPagamento = (data_pag: string[], nomes_pag: string[], quantidades_pag: number[]) => {
   const contagem: { [key: string]: number } = {}
