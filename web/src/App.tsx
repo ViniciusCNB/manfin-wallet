@@ -5,20 +5,16 @@ import NotFoundPage from "./pages/NotFoundPage"
 import PortfolioPage from "./pages/PortfolioPage"
 import ApplicationPage from "./pages/ApplicationPage"
 import ExpensesPage from "./pages/ExpensesPage"
-import NavBar from "./components/NavBar"
 import Menu from "./components/Menu"
 
 const Layout = () => {
   return (
-    <div className="w-screen h-screen">
-      <NavBar />
-      <div className="flex">
-        <div className="">
-          <Menu />
-        </div>
-        <div className="w-full bg-red-500">
-          <Outlet />
-        </div>
+    <div className="flex flex-row">
+      <div className="h-screen">
+        <Menu />
+      </div>
+      <div className="w-full h-screen bg-red-500 border">
+        <Outlet />
       </div>
     </div>
   )

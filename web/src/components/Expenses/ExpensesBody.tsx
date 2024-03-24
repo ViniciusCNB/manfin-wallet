@@ -1,6 +1,7 @@
 import { useEffect, useState, lazy, Suspense } from "react"
 import {
   ChartBarHorizontal,
+  ChartLineUp,
   DotsThreeOutlineVertical,
   House,
 } from "@phosphor-icons/react"
@@ -11,10 +12,15 @@ import ExpensesMenu from "./ExpensesMenu"
 import axios from "axios"
 import { DespesaProps } from "../../types"
 import ExpensesTable from "./ExpensesTable"
-import { compararPorDataAtualizacao_despesa, contaPagamento } from "../../utils"
+import {
+  compararPorDataAtualizacao_despesa,
+  contaPagamento,
+  totalExpensesValue,
+} from "../../utils"
 import AddCategoryModal from "./AddCategoryModal"
 import Chart from "react-apexcharts"
 import AddPaymentModal from "./AddPaymentModal"
+import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid"
 
 const LazyAddExpenseModal = lazy(() => import("./AddExpenseModal"))
 const LazyListCategoriesModal = lazy(() => import("./ListCategoriesModal"))
@@ -34,6 +40,7 @@ const ExpensesBody = () => {
       .get("http://127.0.0.1:8000/despesa/")
       .then((response) => response.data)
       .then((data) => setDespesas(data))
+      .then(() => console.log(despesas))
   }, [])
 
   useEffect(() => {
@@ -50,92 +57,109 @@ const ExpensesBody = () => {
   const quantidades_pag: number[] = []
   contaPagamento(data_pag, nomes_pag, quantidades_pag)
 
-  const BarChartSeries = [
+  const columns: GridColDef[] = [
     {
-      name: "Quantidade de ativos",
-      data: quantidades_pag,
+      field: "data",
+      headerName: "Data",
+      type: "string",
+      width: 100,
     },
+    {
+      field: "categoria",
+      headerName: "Categoria",
+      type: "string",
+      width: 100,
+    },
+    {
+      field: "descricao",
+      headerName: "Descrição",
+      width: 150,
+    },
+    {
+      field: "valor",
+      headerName: "Valor",
+      type: "number",
+      width: 110,
+    },
+    {
+      field: "forma_pagamento",
+      headerName: "Forma de pagamento",
+      type: "number",
+      width: 110,
+    },
+    {
+      field: "observacao",
+      headerName: "Observação",
+      type: "number",
+      width: 110,
+    },
+    // {
+    //   field: "fullName",
+    //   headerName: "Full name",
+    //   description: "This column has a value getter and is not sortable.",
+    //   sortable: false,
+    //   width: 160,
+    //   valueGetter: (params: GridValueGetterParams) =>
+    //     `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+    // },
   ]
 
-  const BarChartOptions = {
-    chart: {
-      id: "basic-bar",
-    },
-    plotOptions: {
-      bar: {
-        borderRadius: 2,
-        horizontal: true,
-        barHeight: "50%",
-      },
-    },
-    xaxis: {
-      categories: nomes_pag,
-    },
-    colors: ["#187c44"],
-    dataLabels: {
-      enabled: true,
-    },
-  }
+  const rows = [
+    { id: 1, lastName: "Snow", firstName: "Jon", age: 14 },
+    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 31 },
+    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 31 },
+    { id: 4, lastName: "Stark", firstName: "Arya", age: 11 },
+    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
+    { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
+    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
+    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
+    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  ]
 
   return (
     <>
-      <div className="bg-slate-500 h-full flex flex-col relative overflow-auto scrollbar-thin scrollbar-thumb-[#2a3447]">
-        <div className="overflow-auto h-full">
-          <div className="bg-blue-500/10 p-5 border">TESTE</div>
-          <div className="bg-blue-500/10 p-5 border">TESTE</div>
-          <div className="bg-blue-500/10 p-5 border">TESTE</div>
-          <div className="bg-blue-500/10 p-5 border">TESTE</div>
-          <div className="bg-blue-500/10 p-5 border">TESTE</div>
-          <div className="bg-blue-500/10 p-5 border">TESTE</div>
-          <div className="bg-blue-500/10 p-5 border">TESTE</div>
-          <div className="bg-blue-500/10 p-5 border">TESTE</div>
-          <div className="bg-blue-500/10 p-5 border">TESTE</div>
-          <div className="bg-blue-500/10 p-5 border">TESTE</div>
-
+      <div className="bg-slate-600 h-full flex flex-col relative overflow-auto scrollbar-thin scrollbar-thumb-[#2a3447]">
+        <div className="flex flex-row px-10 pt-10 pb-5 gap-10 justify-between">
+          <div className="bg-[#323e51] p-8 rounded-lg w-fit flex shadow-lg gap-5">
+            <div className="w-fit">
+              <ChartLineUp size={78} weight="thin" className="text-white" />
+            </div>
+            <div className="flex flex-col gap-2 items-end">
+              <div className="text-white text-3xl ">TOTAL GASTO</div>
+              <div className="text-white text-2xl">
+                R${" "}
+                {totalExpensesValue(despesas).toLocaleString("pt-BR", {
+                  minimumFractionDigits: 2,
+                })}
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#323e51] p-8 rounded-lg w-[500px] flex shadow-lg gap-5">
+            <div className="w-fit"></div>
+            <div className="flex flex-col gap-2 items-end"></div>
+          </div>
+          <div className="bg-[#323e51] p-8 rounded-lg w-[310px] flex shadow-lg gap-5">
+            <div className="w-fit"></div>
+            <div className="flex flex-col gap-2 items-end"></div>
+          </div>
         </div>
-
-        {/* <Drawer /> */}
-        {/* <ExpensesMenu despesas={despesas} /> */}
-        <div className="grid grid-cols-2 gap-5 h-full p-6">
-          <div className="flex flex-col gap-10 w-full h-full overflow-auto scrollbar-thin scrollbar-thumb-[#187c44] p-6">
-            {/* <div className="bg-gray-300 flex flex-col w-full h-full rounded-lg">
+        <div className="flex flex-row px-10 py-5 gap-10">
+          <div className="flex flex-col gap-10 w-full h-full overflow-auto scrollbar-thin scrollbar-thumb-[#187c44]">
+            <div className="bg-gray-300 flex flex-col w-full h-full rounded-lg">
               <ExpensesTable
                 despesas={despesas.sort(compararPorDataAtualizacao_despesa)}
               />
-            </div> */}
+            </div>
           </div>
-          {/* <div className="flex flex-col h-fit w-fit text-center gap-10 bg-gray-300 rounded-lg py-5 px-7 self-center z-0 shadow-inner shadow-black/25">
-            <span className="uppercase text-xl text-[#187c44] font-bold">
-              Distribuição por Forma de Pagamento
-            </span>
-            <Chart
-              type="bar"
-              series={BarChartSeries}
-              options={BarChartOptions}
-              width={300}
-              height={200}
-            />
-            <Chart
-              type="bar"
-              series={BarChartSeries}
-              options={BarChartOptions}
-              width={300}
-              height={200}
-            />
-            <Chart
-              type="bar"
-              series={BarChartSeries}
-              options={BarChartOptions}
-              width={300}
-              height={200}
-            />
-            <Chart
-              type="bar"
-              series={BarChartSeries}
-              options={BarChartOptions}
-              width={300}
-              height={200}
-            />
+        </div>
+        {/* <ExpensesMenu despesas={despesas} /> */}
+        <div className="grid grid-cols-2 gap-5 h-full p-6">
+          {/* <div className="flex flex-col gap-10 w-full h-full overflow-auto scrollbar-thin scrollbar-thumb-[#187c44] p-6">
+            <div className="bg-gray-300 flex flex-col w-full h-full rounded-lg">
+              <ExpensesTable
+                despesas={despesas.sort(compararPorDataAtualizacao_despesa)}
+              />
+            </div>
           </div> */}
           {/* <div className="bg-gray-300 flex flex-col w-fit h-fit rounded-lg p-6">
             Resumo das despesas por categoria
